@@ -8,3 +8,8 @@ Status AccendListInsert_Sq(SqList &va,ElemType x)
     while(x>*(va.elem+p))++p;
     return ListInsert_Sq(va,p+1,x);
 }
+
+int main()
+{
+    return 0;
+}

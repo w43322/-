@@ -30,5 +30,5 @@ Status InitList_Sq(SqList &L)
 
 Status ListInsert_Sq(SqList&L,int i,ElemType e)
 {
-    
+    return OK;
 }

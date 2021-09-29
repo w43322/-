@@ -4,18 +4,20 @@
 
 Status ListSectionDelete_L(LinkList &L,ElemType mink,ElemType maxk)
 {
-    LinkList p=L;
+    LinkList p=L,a=L,prev;
     while(p->data<=mink)
     {
+        a=p;
         p=p->next;
     }
     while(p->data<maxk)
     {
-        LinkList prev=p;
+        prev=p;
         p=p->next;
         free(prev);
     }
+    a->next=p;
     return OK;
 }
 
-//时间复杂度：因为链表是有序的，只从头开始遍历了一次链表，因此时间复杂度是O(maxk的位置)，具体的时间复杂度要取决于maxk的位置，最坏情况下是O(表长)。
+//时间复杂度：因为链表是有序的，只从头开始遍历了一次链表，而链表对于元素的删除的时间复杂度是O(1)，因此算法时间复杂度是O(maxk的位置)，具体的时间复杂度要取决于maxk的位置，最坏情况下是O(表长)。

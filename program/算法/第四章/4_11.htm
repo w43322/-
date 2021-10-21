@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">11. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>例</FONT><FONT SIZE=3> 4-2  </B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>编写程序。实现串的基本运算</FONT><FONT SIZE=3> Replace ( &amp;D, S, T, V )</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>（以</FONT><FONT SIZE=3> <I>V</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串置换</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串中所有和</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串相同的子串后构成一个新串</FONT><FONT SIZE=3> <I>D</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>）。字符串采用定长顺序存储表示。字符串以“\</FONT><FONT SIZE=3>0</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>”表示串值的终结。</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">Status</B>  Replace ( SString <B>&amp;</B>D,  SString T,  SString V )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>以串</FONT><FONT SIZE=3> <I>V</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>置换串</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中所有和</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>相同的子串后构成一个新串</FONT><FONT SIZE=3> <I>D</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果因置换引起存储空间越界，则返回</FONT><FONT SIZE=3> True</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，否则返回</FONT><FONT SIZE=3> False</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>字符串采用定长顺序存储表示。字符串以“\</FONT><FONT SIZE=3>0</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>”表示串值的终结。</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  <B>for</B> ( m = 0;  S[m] <FONT FACE="Symbol">&#185;</FONT>
+ <FONT FACE="Symbol">&#162;</FONT>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>\</FONT><FONT SIZE=3>0<FONT FACE="Symbol">&#162;</FONT>
+;  m++ );&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>求</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串长，</FONT><I><FONT SIZE=3>m</I> = <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串长</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  for</B> ( n = 0;  T[n] <FONT FACE="Symbol">&#185;</FONT>
+ <FONT FACE="Symbol">&#162;</FONT>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>\</FONT><FONT SIZE=3>0<FONT FACE="Symbol">&#162;</FONT>
+;  n++ );&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>求</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串长，</FONT><I><FONT SIZE=3>n</I> = <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串长</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  <B>for</B> ( p = 0;  V[p] <FONT FACE="Symbol">&#185;</FONT>
+ <FONT FACE="Symbol">&#162;</FONT>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>\</FONT><FONT SIZE=3>0<FONT FACE="Symbol">&#162;</FONT>
+;  p++ );&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>求</FONT><FONT SIZE=3> <I>V</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串长，</FONT><I><FONT SIZE=3>p</I> = <I>V</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串长</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  overflow = False;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>设溢出标志位</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  i = 0;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>设</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>指示</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中当前待置换的剩余串起始位置</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  k = 0;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>设</FONT><FONT SIZE=3> <I>k</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为串</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中进行模式匹配的活动指针</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  q = 0;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>设</FONT><FONT SIZE=3> <I>q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>指示串</FONT><FONT SIZE=3> <I>D</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中的当前长度</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  while</B> ( <B>!</B> overflow <B>&amp;&amp; </B>m-k &gt;= n )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若没有出现存储空间越界，且串</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中待匹配的字符数大于等于串</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的长度</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>j = 0;</P><DIR>
+
+<B><P ALIGN="JUSTIFY">while</B> ( ( j &lt; n ) <B>&amp;&amp;</B> ( S[k+j] = = T[j] ) )  j++;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>进行模式匹配</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">if</B> ( j &lt; n )  k++;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>匹配不成功，指针后移一位</P></DIR>
+
+<P ALIGN="JUSTIFY">&#9;</FONT><B><FONT SIZE=3>else if</B> ( q+k-i+p &gt; MAXSTRLEN )  overflow = True</P>
+<P ALIGN="JUSTIFY">&#9;<B>else  {&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</B>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>匹配成功，进行复制和置换，然后修改指针</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  Copy ( D, S, q, i, k-i );</P>
+<P ALIGN="JUSTIFY">&#9;&#9;  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>把串</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中第</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个字符起的</FONT><FONT SIZE=3> <I>k</I>-<I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个字符复制到串</FONT><FONT SIZE=3> <I>D</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中的</FONT><FONT SIZE=3> <I>q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>位置</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  Copy ( D, V, q+k-i, 0, p );</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>把串</FONT><FONT SIZE=3> <I>V</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中第</FONT><FONT SIZE=3> 1 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个字符起的</FONT><FONT SIZE=3> <I>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个字符复制到串</FONT><FONT SIZE=3> <I>D</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中的</FONT><FONT SIZE=3> <I>q</I>+<I>k</I>-<I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>位置</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  i = k + n;    q = q + k -i + p;    k = i;&#9;&#9;&#9;</P><DIR>
+
+<P ALIGN="JUSTIFY">  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>修改串</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中当前待待置换的指针和串</FONT><FONT SIZE=3> <I>D</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中的当前指针</P></DIR>
+
+<P ALIGN="JUSTIFY">&#9;<B>}</B></FONT><FONT SIZE=3> // else </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  }</B> // while </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  if</B> ( ( <B>!</B> overflow ) <B>&amp;&amp;</B> ( i &lt;= m ) <B>&amp;&amp;</B> ( ( q+m-i+1 ) &lt;= MAXSTRLEN ) )  Copy ( D, S, q, i, m-i+1 );</P>
+<P ALIGN="JUSTIFY">  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>把串</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中第</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个字符起的</FONT><FONT SIZE=3> <I>m</I>-<I>i</I>+1 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个字符复制到串</FONT><FONT SIZE=3> <I>D</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中的</FONT><FONT SIZE=3> <I>q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>位置，</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>即将串</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中剩余的字符复制到串</FONT><FONT SIZE=3> <I>D</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  else</B>  overflow = True;</P>
+<B><P ALIGN="JUSTIFY">  return</B> ( <B>!</B> overflow )</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // Replace</P>
+<P ALIGN="JUSTIFY"></P>
+<B><P ALIGN="JUSTIFY">void</B>  Copy ( SString <B>&amp;</B>A,  SString B,  <B>int</B> x,  <B>int</B> y,  <B>int</B> len )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>将串</FONT><FONT SIZE=3> <I>B</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中自第</FONT><FONT SIZE=3> <I>y</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个字符起共</FONT><FONT SIZE=3> <I>len</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个字符复制到串</FONT><FONT SIZE=3> <I>A</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中第</FONT><FONT SIZE=3> <I>x</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个字符起的位置</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  <B>for</B>  ( i = x, j = y, k = 1;  k &lt;= len;  i++, j++, k++ )  A[i] = B[j];</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // Copy</P></FONT></BODY>
+</HTML>

@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">4. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>二叉排序树的插入算法</P>
+</B><P ALIGN="JUSTIFY">&#9;</FONT><B><FONT SIZE=3>Status</B>  InsertBST ( BiTree  <B>&amp;</B>T,  TElemType  e )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>当二叉排序树</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中不存在关键字等于</FONT><FONT SIZE=3> <I>e.key</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的数据元素时，</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>插入</FONT><FONT SIZE=3> <I>e</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>并返回</FONT><FONT SIZE=3> TRUE</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，否则返回</FONT><FONT SIZE=3> FALSE</P>
+<P ALIGN="JUSTIFY">&#9;  <B>if</B> ( <B>!</B> SearchBST ( T, e, NULL, p ) )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{&#9;&#9;&#9;</B></FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>查找不成功</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>s = ( BiTree ) <B>malloc</B> ( <B>sizeof</B> ( BiTNode ) );</P>
+<P ALIGN="JUSTIFY">&#9;&#9;s-&gt;data = e;  s-&gt;lchild = NULL;  s-&gt;rchild = NULL;</P>
+<P ALIGN="JUSTIFY">&#9;&#9;<B>if</B> ( <B>!</B> p )  T = s;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>被插结点</FONT><FONT SIZE=3> *<I>s</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为新的根结点</P>
+<B><P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>else if</B> ( e.key &lt; p-&gt;data.key )</P>
+<P ALIGN="JUSTIFY">&#9;&#9;  p-&gt;lchild = s;&#9;  &#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>被插结点</FONT><FONT SIZE=3> *<I>s</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为左孩子</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><B><FONT SIZE=3>else</B>  p-&gt;rchild = s;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>被插结点</FONT><FONT SIZE=3> *<I>s</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为右孩子</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><B><FONT SIZE=3>return</B> TURE</P>
+<P ALIGN="JUSTIFY">&#9;  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</FONT><FONT SIZE=3> </B>// if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<B><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  else  return</B> FALSE;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>树中已有关键字相同结点不再插入</P>
+<P ALIGN="JUSTIFY">&#9;<B>}</B></FONT><FONT SIZE=3> // InsertBST</P></FONT></BODY>
+</HTML>

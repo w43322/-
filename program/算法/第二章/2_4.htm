@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">4. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>顺序线性表的定位算法</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">int</B>  LocateElem_Sq ( SqList L,  ElemType e,  <B>Status</B> ( *compare ) ( ElemType,  Elemtype ) )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>在顺序线性表</FONT><FONT SIZE=3> <I>L </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中查找第</FONT><FONT SIZE=3> 1 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个值与</FONT><FONT SIZE=3> <I>e </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>满足</FONT><FONT SIZE=3> compare ( ) </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的元素的位序；</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若找到，则返回其在</FONT><FONT SIZE=3> <I>L </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中的位序，否则返回</FONT><FONT SIZE=3> 0</P>
+<P ALIGN="JUSTIFY">  i = 1;&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的初值为第</FONT><FONT SIZE=3> 1 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个元素的位序</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  p = L.elem&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// <I>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的初值为第</FONT><FONT SIZE=3> 1 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个元素存储位置</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  <B>while</B> ( i &lt;= L.length <B>&amp;&amp;</B> <B>!</B> ( *compare ) ( *p++,  e ) )  ++i;</P>
+<P ALIGN="JUSTIFY">  <B>if</B> ( i &lt;= L.length )  <B>return</B> i;</P>
+<P ALIGN="JUSTIFY">  <B>else</B>  <B>return</B> 0;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // LocateElem_Sq</P></FONT></BODY>
+</HTML>

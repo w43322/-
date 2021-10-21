@@ -1,0 +1,68 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">12. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>求关键路径算法</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    Status</B>  TopologicalOrder ( ALGraph  G,  SqStack  <B>&amp;</B>T )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>有向图</FONT><FONT SIZE=3> <I>G</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>采用邻接表存储结构，求各顶点事件的最早发生时间</FONT><FONT SIZE=3> <I>ve</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>（全局变量）。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为拓扑序列顶点栈，</FONT><I><FONT SIZE=3>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为零入度顶点栈。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果</FONT><FONT SIZE=3> <I>G</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>无回路，则用栈</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>返回</FONT><FONT SIZE=3> G </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的一个拓扑序列，且函数值为</FONT><FONT SIZE=3> OK</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，否则为</FONT><FONT SIZE=3> ERROR</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      FindInDegree ( G,  indegree );</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>对各顶点求入度</FONT><FONT SIZE=3> indegree [0..vernum-1]</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  InitStack (S);&#9;&#9;&#9;    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>初始化零入度顶点栈</FONT><FONT SIZE=3> <I>S</P>
+</I><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>for</B> ( i = 0;  i &lt; G.vexnum;  ++i )&#9;  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>建立零入度顶点栈</FONT><FONT SIZE=3> <I>S</P>
+</I><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>if</B> ( <B>!</B> indegree [i] )  Push ( S, i );  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>入度为</FONT><FONT SIZE=3> 0 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的顶点序号入栈</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  InitStack (T);&#9;&#9;&#9;    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>初始化拓扑序列顶点栈</FONT><FONT SIZE=3> <I>T</P>
+</I><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  count = 0;&#9;&#9;&#9;&#9;    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>初始化输出顶点计数器</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  ve[0..G.vexnum-1] = 0;&#9;&#9;    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>设各顶点最早发生时间为</FONT><FONT SIZE=3> 0</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>while</B> ( <B>!</B> StackEmpty (S) )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>Pop ( S, j );  Push ( T, j );  ++count;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// <I>j</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>号顶点入</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>栈并计数</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>for</B> ( p = G.vertices[j].firstarc;  p;  p = p-&gt;nextarc )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B><P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  k = p-&gt;adjvex;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>对</FONT><FONT SIZE=3> <I>j</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>号顶点的每个邻接点入度减</FONT><FONT SIZE=3> 1</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( <B>!</B> ( --indegree [k] ) )</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若入度减为</FONT><FONT SIZE=3> 0 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，则入栈</P><DIR>
+<DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">Push ( S, k );</P></DIR>
+</DIR>
+
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  <B>if</B> ( ve[j] + *( p-&gt;info) &gt; ve[k] )</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3> &#9; &#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>求各顶点的最早发生时间</P><DIR>
+<DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">ve[k] = ve[j] + *( p-&gt;info)</P></DIR>
+
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // for </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P></DIR>
+
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // while </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( count &lt; G.vexnum )  <B>return</B> ERROR; </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>该有向网有回路</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>else  return</B> OK;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // ToptlogicalOrder</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY"></P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    Status</B>  CriticalPath ( ALGraph  G )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // <I>G</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为有向网，输出</FONT><FONT SIZE=3> <I>G</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的各项关键活动。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      <B>if</B> ( <B>!</B> TopologicalOrder ( G, T ) )  <B>return</B> ERROR;</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  vl[0..G.vexnum-1] = ve[G.vexnum-1];    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>初始化顶点事件最迟发生时间</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>while</B> ( <B>!</B> StackEmpty (T) )    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>按拓扑逆序求各顶点的</FONT><FONT SIZE=3> <I>vl</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>值</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>for</B> ( Pop ( T, j ),  p = G.vertices[j].firstarc;  p;  p = p-&gt;nextarc )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B><P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  k = p-&gt;adjvex;    dut = *( p-&gt;info );</P><DIR>
+
+<P ALIGN="JUSTIFY">  // <I>dut</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>是事件</FONT><FONT SIZE=3> <I>v<SUB>j</I></SUB> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>到事件</FONT><FONT SIZE=3> <I>v<SUB>k</I></SUB> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>活动持续时间，即</FONT><FONT SIZE=3> <I>dut</I>&lt;<I>j</I>, <I>k</I>&gt;</P></DIR>
+
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  <B>if</B> ( vl[k] – dut &lt; vl[j] )  vl[j] = vl[k] – dut;</P>
+<B><P ALIGN="JUSTIFY">  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // for </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>for</B> ( j = 0;  j &lt; G.vexnum;  ++j )</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>求活动的最早开始时间</FONT><FONT SIZE=3> <I>ee</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>、最迟开始时间</FONT><FONT SIZE=3> <I>el</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和关键活动</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  for</B> ( p = G.vertices[j].firstarc;  p;  p = p-&gt;nextarc )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B><P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>k = p-&gt;adjvex;    dut = *( p-&gt;info );</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>ee = ve[j];    el = vl[k] – dut;</P>
+<P ALIGN="JUSTIFY">&#9;tag = ( ee = = el ) <B>?</B> <FONT FACE="Symbol">&#162;</FONT>
+ * <FONT FACE="Symbol">&#162;</FONT>
+ <B>:</B> <FONT FACE="Symbol">&#162;</FONT>
+ <FONT FACE="Symbol">&#162;</FONT>
+;</P>
+<P ALIGN="JUSTIFY">&#9;<B>printf</B> ( j, k, dut, ee, el, tag );</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>输出关键活动</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // for ( p = G.vertices[j].firstarc ) </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<B><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // CriticalPath</P></FONT></BODY>
+</HTML>

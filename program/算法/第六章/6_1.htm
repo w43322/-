@@ -1,0 +1,29 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">1. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>先序遍历二叉树的递归算法</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    Status</B>  PreOrderTraverse ( BiTree  T,  <B>Status </B>( *Visit ) ( TElemType  e ) )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>采用二叉链表存储结构，</FONT><FONT SIZE=3>Visit </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>是对数据元素操作的应用函数，先序遍历二叉树</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的递归算法。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      <B>if</B> ( T )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</B>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>不为空</P><DIR>
+
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">if</B> ( Visit ( T-&gt;data ) )&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>调用函数</FONT><FONT SIZE=3> Visit</P>
+<B><P ALIGN="JUSTIFY">  if</B> ( PreOrderTraverse ( T-&gt;lchild, Visit ) )  &#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>递归调用左子树</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  &#9;<B>if</B> ( PreOrderTraverse ( T-&gt;rchild, Visit ) )</P><DIR>
+<DIR>
+<DIR>
+
+<B><P ALIGN="JUSTIFY">  return</B> OK; &#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>递归调用右子树</P></DIR>
+</DIR>
+</DIR>
+</DIR>
+
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    &#9;return</B> ERROR;</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> </P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>else</B>  <B>return</B> OK;</P>
+<B><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // PreOrderTraverse</P></FONT></BODY>
+</HTML>

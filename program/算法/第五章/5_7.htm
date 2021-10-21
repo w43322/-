@@ -1,0 +1,53 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">7. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>创建稀疏矩阵算法</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    Status</B>  CreateSMatrix_OL ( CrossList  <B>&amp;</B>M )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>创建稀疏矩阵</FONT><FONT SIZE=3> <I>M</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>。采用十字链表存储表示。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( M )  <B>free</B> ( M );</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>scanf</B> ( &amp;m, &amp;n, &amp;t);&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>输入</FONT><FONT SIZE=3> <I>M</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的行数、列数和非零元个数</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  M.mu = m;  M.nu = n;  M.tu = t;</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( <B>!</B> ( M.rhead = ( OLink *) <B>malloc</B> ( ( m + 1 ) * <B>sizeof</B> ( OLink ) ) ) )  <B>exit</B> ( OVERFLOW );</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( <B>!</B> ( M.chead = ( OLink *) <B>malloc</B> ( ( n + 1 ) * <B>sizeof</B> ( OLink ) ) ) )  <B>exit</B> ( OVERFLOW );</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  M.rhead[] = NULL;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>初始化行头指针向量；各行链表为空链表</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  M.chead[] = NULL;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>初始化列头指针向量；各列链表为空链表</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  for</B> ( <B>scanf</B> ( <B>&amp;</B>i, <B>&amp;</B>j, <B>&amp;</B>e );  e <B>!</B> = 0;  <B>scanf</B> ( <B>&amp;</B>i, <B>&amp;</B>j, <B>&amp;</B>e ) )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{&#9;</B></FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>按任意次序输入非零元</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>if</B> ( <B>!</B> ( p = ( OLNode *) <B>malloc</B> ( <B>sizeof</B> ( OLNode ) ) ) )  <B>exit</B> ( OVERFLOW);</P>
+<P ALIGN="JUSTIFY">      </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>p-&gt;i = i;    p-&gt;j = j;    p-&gt;e = e;&#9; </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>生成新结点</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>if</B> ( M.rhead[i] = = NULL )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B><P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  M.rhead[i] = p;  p-&gt;right = NULL;</P>
+<P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;<B>}</FONT><FONT SIZE=3> </B>// if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>else if </B>( M.rhead[i]-&gt;j &gt; j )<B>  {&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</B></FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>寻找在行表中的插入位置</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3>  p-&gt;right = M.rhead[i];  M.rhead[i] = p</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;<B>}</FONT><FONT SIZE=3> </B>// else if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>else</B>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</FONT><FONT SIZE=3> </P>
+</B><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3>  <B>for</B> ( q = M.rhead[i];  ( q-&gt;right ) <B>&amp;&amp;</B> q-&gt;right-&gt;j &lt; j;  q = q-&gt;right );</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3>  p-&gt;right = q-&gt;right;  </P><DIR>
+
+<P ALIGN="JUSTIFY">  q-&gt;right = p;</P></DIR>
+
+<P ALIGN="JUSTIFY">        </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>完成行插入</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">        &#9;<B>if</B> ( M.chead[j] = = NULL )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B><P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  M.chead[j] = p;  p-&gt;down = NULL;</P>
+<P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;<B>}</FONT><FONT SIZE=3> </B>// if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>else if </B>( M.chead[j]-&gt;i &gt; i )<B>  {&#9;&#9; </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</B></FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>寻找在列表中的插入位置</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  p-&gt;down = M.rhead[j];  M.rhead[j] = p</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;<B>}</FONT><FONT SIZE=3> </B>// else if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P><DIR>
+
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">else</B>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</FONT><FONT SIZE=3> </P></DIR>
+
+</B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>for</B> ( q = M.chead[j];  ( q-&gt;down ) <B>&amp;&amp;</B> q-&gt;down-&gt;i &lt; i;  q = q-&gt;down );</P>
+<P ALIGN="JUSTIFY">&#9;    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  p-&gt;down = q-&gt;down;</P><DIR>
+
+<P ALIGN="JUSTIFY">  q-&gt;down = p;</P></DIR>
+
+<P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;<B>}</B></FONT><FONT SIZE=3> // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>完成列插入</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // for </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>return</B> OK;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // CreateSMatrix_OL</P></FONT></BODY>
+</HTML>

@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">9. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>在二叉线索树中求结点的后继算法</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    Status </B> Next_Thr ( BiThrTree  t,  <B>&amp;</B>p )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // <I>t</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>指向二叉线索树中某一结点，</FONT><I><FONT SIZE=3>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>返回此结点的后继；并返回</FONT><FONT SIZE=3> OK</P>
+<P ALIGN="JUSTIFY">      p = t-&gt;rchild;&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>将</FONT><FONT SIZE=3> <I>t</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的</FONT><FONT SIZE=3> rchild </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>域的值赋给</FONT><FONT SIZE=3> <I>p</P>
+</I><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( p = Thrt )  <B>return</B> ERROR;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若</FONT><FONT SIZE=3> <I>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>指向头结点，则出错</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( t-&gt;rtag = Link )</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若</FONT><FONT SIZE=3> <I>t</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的</FONT><FONT SIZE=3> rtag </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为</FONT><FONT SIZE=3> 0</P>
+<P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>while</B> ( p-&gt;lrag = Link )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</B></FONT><FONT SIZE=3> p = p-&gt;lchild; </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}&#9;&#9;</B></FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>顺着</FONT><FONT SIZE=3> <I>t</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>右孩子的左链域寻找，直到</FONT><FONT SIZE=3> ltag </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为</FONT><FONT SIZE=3> 1 </P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>return</B> OK;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // Next_Thr</P></FONT></BODY>
+</HTML>

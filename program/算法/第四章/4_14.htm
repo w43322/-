@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">14. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>例</FONT><FONT SIZE=3> 4-5  </B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串的模式匹配</FONT><FONT SIZE=3> KMP </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>算法。</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    void</B>  get_next ( SString  T,  <B>int</B>  <B>&amp;</B>next[ ] )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>求模式</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的</FONT><FONT SIZE=3> <I>next</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>函数值并存入数组</FONT><FONT SIZE=3> <I>next</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>。为后面进行模式匹配做准备。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY"> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  i = 1;    next[1] = 0;    j = 0;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>设置初值</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  while</B> ( i &lt;= T[0] )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>if</B> ( j = = 0 <B>||</B> T[i] = = T[j] )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P><DIR>
+
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若</FONT><FONT SIZE=3> <I>j</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为零或者</FONT><FONT SIZE=3> <I>T</I>[<I>i</I>] </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>T</I>[<I>j</I>] </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>相等，则令</FONT><I><FONT SIZE=3> next</I>[<I>i</I>+1] = <I>next</I>[<I>j</I>]+1</P>
+<P ALIGN="JUSTIFY">  ++i;  ++j;  next[i] = j;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</FONT><FONT SIZE=3> </B>// if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P></DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>else</B>  j = next[j];</P>
+<P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若</FONT><FONT SIZE=3> <I>j</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>不为零或者</FONT><FONT SIZE=3> <I>T</I>[<I>k</I>] </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>T</I>[<I>j</I>] </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>不相等，则令</FONT><FONT SIZE=3> <I>j</I> = <I>next</I>[<I>j</I>]</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</FONT><FONT SIZE=3> </B>// while </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<B><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // get_next</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY"></P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    int</B>  Index-KMP ( SString  S,  SString  T,  <B>int</B>  pos )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>均采用定长顺序存储结构，</FONT><I><FONT SIZE=3>S</I>[0] </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>T</I>[0] </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>存放串长度。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>利用模式</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的</FONT><FONT SIZE=3> <I>next</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>函数求</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>在主串</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中第</FONT><FONT SIZE=3> <I>pos</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个字符后的位置的</FONT><FONT SIZE=3> KMP </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>算法</P><DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>其中</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>非空，</FONT><FONT SIZE=3>1</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>≤</FONT><I><FONT SIZE=3>pos</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>≤</FONT><I><FONT SIZE=3>S</I>[0]-<I>T</I>[0]+1</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>。</P></DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  i = pos;    j = 1;&#9;&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>设置初值</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  while</B> ( i &lt;= S[0] <B>&amp;&amp;</B> j &lt;= T[0] )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>if</B> ( j = = 0 <B>||</B> S[i] = = T[j] )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{&#9;&#9;&#9;&#9;&#9;</B></FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>继续比较后继字符</P><DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  ++i;  ++j;  </P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</FONT><FONT SIZE=3> </B>// if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P></DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>else</B>  j = next[j];&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>模式向右移动</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</FONT><FONT SIZE=3> </B>// while </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( j &gt; T[0] )  <B>return</B> i-T[0];&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>匹配成功</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>else</B>  <B>return</B> 0;&#9;&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>匹配不成功</P>
+<B><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // Index-KMP</P></FONT></BODY>
+</HTML>

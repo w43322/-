@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">15. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>例</FONT><FONT SIZE=3> 2-5  </B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>写一算法。有两个一元多项式</FONT><FONT SIZE=3> <I>PA</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>PB</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，采用链式存储结构为</FONT><FONT SIZE=3> <I>Pa</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>Pb</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，进行多项式加法：</FONT><I><FONT SIZE=3>Pa</I> = <I>Pa</I> + <I>Pb</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，利用两个多项式的结点构成“和多项式”，且“和多项式”与</FONT><FONT SIZE=3> <I>Pa</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>共用有关头结点。</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">   &#9;void</B>  AddPolyn ( polynomial  <B>&amp;</B>Pa,  polynomial  <B>&amp;</B>Pb )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>多项式加法：</FONT><I><FONT SIZE=3>Pa</I> = <I>Pa</I> + <I>Pb</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，利用两个多项式的结点构成“和多项式”</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  qa = Pa-&gt;next;</P>
+<P ALIGN="JUSTIFY">  // <I>qa</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>指向</FONT><FONT SIZE=3> <I>Pa</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中的当前结点，初始时指向</FONT><FONT SIZE=3> <I>Pa</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中的第一个结点</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  qb = Pb-&gt;next;  </P><DIR>
+
+<P ALIGN="JUSTIFY">  // <I>qb</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>指向</FONT><FONT SIZE=3> <I>Pb</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中的当前结点，初始时指向</FONT><FONT SIZE=3> <I>Pb</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中的第一个结点</P></DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  pre = Pa;</P>
+<P ALIGN="JUSTIFY">  // <I>pre</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>指向</FONT><FONT SIZE=3> <I>qa</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的前趋结点，初始时指向</FONT><FONT SIZE=3> <I>Pa </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的头结点</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  <B>while</B> ( qa <B>&amp;&amp;</B> qb ) </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// <I>qa</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>qb</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为非空</P><DIR>
+
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">switch</B> ( cmp ( qa-&gt;expn, qb-&gt;expn ) )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  case <FONT FACE="Symbol">&#162;</FONT>
+</B> &lt; <FONT FACE="Symbol">&#162;</FONT>
+ <B>:</B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>多项式</FONT><FONT SIZE=3> <I>Pa</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中当前结点的指数小</P><DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">pre = qa;  qa = qa-&gt;next;</P>
+<B><P ALIGN="JUSTIFY">break</B>;</P></DIR>
+
+<P ALIGN="JUSTIFY">  <B>case</B> <FONT FACE="Symbol">&#162;</FONT>
+ = <FONT FACE="Symbol">&#162;</FONT>
+ <B>:</B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>两个多项式中当前结点的指数相等</P><DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">sum = qa-&gt;coef + qb-&gt;coef;</P>
+<B><P ALIGN="JUSTIFY">if</B> ( sum <B>! </B>= 0.0 )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</B>&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>修改多项式</FONT><FONT SIZE=3> <I>Pa</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中当前结点系数值</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  qa-&gt;coef = sum;  pre = qa;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</FONT><FONT SIZE=3> </B>// if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">else</B>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</B>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>删除多项式</FONT><FONT SIZE=3> <I>Pa</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中当前结点</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  pre-&gt;next = qa-&gt;next;</P>
+<B><P ALIGN="JUSTIFY">  free</B> ( qa );</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</FONT><FONT SIZE=3> </B>// else </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">qa = pre-&gt;next;  u = qb;  qb = qb-&gt;next;</P>
+<B><P ALIGN="JUSTIFY">free</B> ( u );</P>
+<B><P ALIGN="JUSTIFY">break</B>;</P></DIR>
+
+<B><P ALIGN="JUSTIFY">  case</B> <FONT FACE="Symbol">&#162;</FONT>
+ &gt; <FONT FACE="Symbol">&#162;</FONT>
+ <B>:</B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>多项式</FONT><FONT SIZE=3> <I>Pb</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中当前结点的指数小</P><DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">u = qb-&gt;next;  qb-&gt;next = qa;  pre-&gt;next = qb;  pre = qb;  qb = u;</P>
+<B><P ALIGN="JUSTIFY">break</B>;</P></DIR>
+
+<P ALIGN="JUSTIFY">  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // switch</P></DIR>
+
+<B><P ALIGN="JUSTIFY">  if</B> ( qb )  pre-&gt;next = qb;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>链接</FONT><FONT SIZE=3> <I>Pb</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中的剩余结点</P><DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  <B>free</B> ( Pb );&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>释放</FONT><FONT SIZE=3> <I>Pb</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的头结点</P></DIR>
+
+<B><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // AddPloyn</P></FONT></BODY>
+</HTML>

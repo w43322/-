@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">19. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>例</FONT><FONT SIZE=3> 3-4  </B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>编写队列管理的模拟算法。</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">void</B><I>  </I>OutQueue ( LinkQueue  <B>&amp;</B>Q )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{&#9;</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>显示队列</FONT><FONT SIZE=3> <I>Q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中的值</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  p = Q-&gt;front;</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>printf</B> ( <FONT FACE="Symbol">&#178;</FONT>
+ Queue : <FONT FACE="Symbol">&#178;</FONT>
+ );</P>
+<B><P ALIGN="JUSTIFY">  &#9;  while</B> ( p <B>!</B> = Q-&gt;rear )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</FONT><FONT SIZE=3> </B>p = p-&gt;next;  <B>printf</B> ( <FONT FACE="Symbol">&#178;</FONT>
+ %d <FONT FACE="Symbol">&#178;</FONT>
+, p-&gt;data ); </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>printf</B> ( <FONT FACE="Symbol">&#178;</FONT>
+ \ n <FONT FACE="Symbol">&#178;</FONT>
+ );</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // OutQueue</P>
+<B><P ALIGN="JUSTIFY">    main</B> ( )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  p = <B>&amp;</B>LQ;</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  InitQueue ( p );&#9;         </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>初始化队列</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>printf </B>( <FONT FACE="Symbol">&#178;</FONT>
+ Input a integer : <FONT FACE="Symbol">&#178;</FONT>
+ );</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>scanf</B> ( <FONT FACE="Symbol">&#178;</FONT>
+ %d <FONT FACE="Symbol">&#178;</FONT>
+, &amp;j );&#9;&#9;        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>输入一个整数</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>while</B> ( j <B>!</B> = 0 )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>if</B> ( j % 2 = = 1 )  EnQueue ( p, j ); </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3>  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若输入奇数，则入队列</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>else</B>  j = DeQueue ( p );&#9;         </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若输入偶数，则出队列</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>OutQueue ( p );&#9;&#9; </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>显示队列中的值（如前）</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>printf</B> ( <FONT FACE="Symbol">&#178;</FONT>
+ \ n Input a integer : <FONT FACE="Symbol">&#178;</FONT>
+ );</P>
+<P ALIGN="JUSTIFY">      </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>scanf </B>( <FONT FACE="Symbol">&#178;</FONT>
+ %d <FONT FACE="Symbol">&#178;</FONT>
+, &amp;j );</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // while </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<B><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // main</P></FONT></BODY>
+</HTML>

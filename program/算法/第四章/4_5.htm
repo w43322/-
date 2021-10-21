@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">5. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>堆分配存储的串比较算法</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    int</B>  StrCompare ( HString  S,  HString  T )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>从第一个字符开始比较，直到出现第一个不相等的字符：</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果</FONT><FONT SIZE=3> <I>S</I>[i] &gt; <I>T</I>[i]</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，则</FONT><FONT SIZE=3> <I>S</I> &gt; <I>T</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，返回值</FONT><FONT SIZE=3> &gt; 0</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>；如果</FONT><FONT SIZE=3> <I>S</I>[i] &lt; <I>T</I>[i]</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，则</FONT><FONT SIZE=3> <I>S</I> &lt; <I>T</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，返回值</FONT><FONT SIZE=3> &lt; 0</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>；</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>长度相等，所有字符相等时，</FONT><I><FONT SIZE=3>S</I> = <I>T</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，返回值</FONT><FONT SIZE=3> = 0</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>。</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  for</B>  ( i = 0;  i &lt; S.length <B>&amp;&amp;</B> i &lt; T.length;  ++i )</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>if</B> ( S.ch[i] <B>!</B> = T.ch[i] )  <B>return</B> S.ch[i]–T.ch[i];</P>
+<B><P ALIGN="JUSTIFY">  return</B> S.length–T.length;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // StrCpmpare</P></FONT></BODY>
+</HTML>

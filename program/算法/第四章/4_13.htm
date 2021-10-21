@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">13. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>例</FONT><FONT SIZE=3> 4-4  </B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串的模式匹配</FONT><FONT SIZE=3> BF </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>算法。</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    int</B>  Index-BF ( SString  S,  SString  T,  <B>int</B>  pos )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>串</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>均采用定长顺序存储结构，</FONT><I><FONT SIZE=3>S</I>[0] </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>T</I>[0] </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>存放串长度。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>返回模式</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>在主串</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中第</FONT><FONT SIZE=3> <I>pos</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个字符之后的位置，如果不存在，</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>则返回函数值</FONT><FONT SIZE=3> 0</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>。其中</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>非空，</FONT><FONT SIZE=3>1</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>≤</FONT><I><FONT SIZE=3>pos</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>≤</FONT><I><FONT SIZE=3>S</I>[0]-<I>T</I>[0]+1</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>i = pos;    j = 1;</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>从主串</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的第</FONT><FONT SIZE=3> <I>pos</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个字符起和模式</FONT><FONT SIZE=3> <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的第一个字符比较</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>while</B> ( i &lt;= S[0] <B>&amp;&amp;</B> j &lt;= T[0] )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</B></FONT><FONT SIZE=3>  </P>
+<P ALIGN="JUSTIFY">      i<B>f </B>( S[i] = = T[j] )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</FONT><FONT SIZE=3> </B>++i;  ++j; </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}&#9;&#9;&#9;&#9;</B></FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若字符相等，则继续比较后继字符</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      <B>else</B>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</FONT><FONT SIZE=3> </B>i = i – j + 2;  j = 1; </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}&#9;&#9;&#9;&#9;&#9;</B></FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若字符不等，则指针后退重新开始匹配</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;<B>}</B></FONT><FONT SIZE=3> // while </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>if</B> ( j &gt; T[0] )  <B>return</B> i–T[0];</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>else  return</B> 0;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // Index-BF</P></FONT></BODY>
+</HTML>

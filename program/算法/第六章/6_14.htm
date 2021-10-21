@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">14. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>例</FONT><FONT SIZE=3> 6-1  </B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>编写算法。将值为</FONT><FONT SIZE=3> <I>e</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的新结点</FONT><FONT SIZE=3> <I>q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>插入到二叉线索树中，作为结点</FONT><FONT SIZE=3> <I>t</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的左孩子；如果</FONT><FONT SIZE=3> <I>t</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>有左子树，则在新结点</FONT><FONT SIZE=3> <I>q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>插入之后，成为新结点</FONT><FONT SIZE=3> <I>q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的左子树。</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    Status</B>  Insert_Thr ( BiThrTree  Thrt,  BiThrTree  t,  TElemType  e )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>构造数据域值为</FONT><FONT SIZE=3> <I>e</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的新结点，将其插入到线索树中作为</FONT><FONT SIZE=3> <I>t</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的左孩子，并返回</FONT><FONT SIZE=3> OK</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B>  ( <B>!</B> q = ( BiThrTree ) <B>malloc</B> ( <B>sizeof</B> ( BiThrNode ) ) )  <B>exit</B> ( OVERFLOW );</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  q-&gt;data = e;</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  q-&gt;lchild = t-&gt;lchild;  q-&gt;ltag = t-&gt;ltag;</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  q-&gt;rchild = t;  q-&gt;rtag = Thread;</P>
+<P ALIGN="JUSTIFY">  t-&gt;lchild = q;  t-&gt;ltag = Link;</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B>  ( q-&gt;LTag = Link )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  </B>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若</FONT><FONT SIZE=3> <I>q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的</FONT><FONT SIZE=3> ltag </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为</FONT><FONT SIZE=3> 0</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，则寻找</FONT><FONT SIZE=3> <I>q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的前驱</FONT><FONT SIZE=3> <I>p</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，并将</FONT><FONT SIZE=3> <I>q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>作为</FONT><FONT SIZE=3> <I>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的后继</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3>Prior_Thr ( q, p );  p-&gt;rchild = q;  </P>
+<B><P ALIGN="JUSTIFY">  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</FONT><FONT SIZE=3> </B>// if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>return</B>  OK</P>
+<B><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // Insert_Thr</P></FONT></BODY>
+</HTML>

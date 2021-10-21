@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">15. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>例</FONT><FONT SIZE=3> 6-2  </B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>给定一棵二叉树，用二叉链表表示，其根结点的指针为</FONT><FONT SIZE=3> <I>T</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，试写出求该二叉树结点</FONT><FONT SIZE=3> <I>N</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的双亲结点的算法。若没有结点</FONT><FONT SIZE=3> <I>N</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>或没有双亲结点，则分别打印出相应的信息；若结点</FONT><FONT SIZE=3> <I>N</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>有双亲，则打印其双亲结点的值。</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    Status</B>  Parent_Judge ( BiTree T,  SqQueue Q )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// <I>T</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>采用二叉链表存储结构，</FONT><I><FONT SIZE=3>Q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>采用循环队列顺序存储结构。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>求二叉树</FONT><FONT SIZE=3> <I>T </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中结点</FONT><FONT SIZE=3> <I>N</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的双亲结点</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  Q.base = ( BiTNode * ) <B>malloc</B> ( MAXQSIZE * <B>sizeof</B> ( BitNode ) );</P>
+<B><P ALIGN="JUSTIFY">  if</B> ( <B>!</B> Q.base )  <B>exit</B> ( OVERFLOW );&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>存储分配失败</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  parent = NULL;</P>
+<P ALIGN="JUSTIFY">&#9;  <B>if</B> ( <B>!</B> T )  <B>return</B> ERROR&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>二叉树为空，返回</FONT><FONT SIZE=3> ERROR</P>
+<P ALIGN="JUSTIFY">&#9;  <B>else  {</B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>二叉树非空</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><B><FONT SIZE=3>if</B> ( T-&gt;data = = n )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B><P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  <B>printf</B> (“ %s no parent \ n ”);&#9;&#9;&#9;&#9;// <I>n</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>是根结点，无双亲</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  <B>return</B> OK;</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><B><FONT SIZE=3>else  {&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</B>// <I>n</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>不是根结点</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  front = 0;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>初始化队列</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  rear = 1;  Q[1] = T;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>根结点进队</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  p = T;</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  <B>Do  {</P>
+</B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><FONT SIZE=3>front = frong % MAXQSIZE + 1;</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>p = Q[front];</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><B><FONT SIZE=3>if</B>  ( p-&gt;lchild-&gt;data = = n ) <B>||</B> ( p-&gt;rchild-&gt;data = = n )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B><P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结点</FONT><FONT SIZE=3> <I>n</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>有双亲</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><FONT SIZE=3>  parent = p;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>输出双亲结点</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><FONT SIZE=3>  front = rear;</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;  <B>printf</B> (“ %2d parent ”,  p-&gt;data );</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  <B>return</B> OK;</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;&#9;<B>}</B></FONT><FONT SIZE=3> // if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><B><FONT SIZE=3>else  {</P>
+</B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><FONT SIZE=3>  <B>if</B>  ( p-&gt;lchild != NULL )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</B>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>左子树的根结点入队</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>rear = rear % MAXQSIZE + 1;</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;&#9;Q[rear] = p-&gt;lchild;</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><FONT SIZE=3>  <B>if</B>  ( p-&gt;rchild != NULL )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</B>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>右子树的根结点入队</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>rear = rear % MAXQSIZE + 1;</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;&#9;Q[rear] = p-&gt;rchild;</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<P ALIGN="JUSTIFY">&#9;&#9;<B>}</B></FONT><FONT SIZE=3> // else </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> <B>while</B> ( rear = = front )&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>队列空时结束</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  <B>if</B>  ( parent = = NULL )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B><P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><B><FONT SIZE=3>printf</B> (“ no node n \ n“ );</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><B><FONT SIZE=3>return</B> OK;</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<P ALIGN="JUSTIFY">&#9;&#9;<B>}</B></FONT><FONT SIZE=3> // else </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // else </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // Parent_Judge</P></FONT></BODY>
+</HTML>

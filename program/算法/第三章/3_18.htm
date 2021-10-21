@@ -1,0 +1,85 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">18. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>例</FONT><FONT SIZE=3> 3-3  </B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>设有两个栈</FONT><FONT SIZE=3> <I>S</I><SUB>1</SUB> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>S</I><SUB>2</SUB></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，都采用顺序栈的方式存储，并且共享一个存储区</FONT><FONT SIZE=3> [ 0 . . maxzise-1]</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>（存储空间不扩充），为了尽量利用空间，减少溢出的可能，可以采用栈顶相向、迎面增长的存储方式，试编写入栈算法和出栈算法。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">(1) </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>入栈算法。</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">Status  </B>DuSqStackPush ( DuSqStack <B>&amp;</B>S,  SElemType x )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>栈</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为共享顺序栈类型</FONT><FONT SIZE=3> DuSqStack</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，含</FONT><FONT SIZE=3> top1</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>、</FONT><FONT SIZE=3>top2 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> data </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>数组域；</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>此算法将元素</FONT><FONT SIZE=3> <I>x</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>放入栈</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中；如果两个栈满，则返回</FONT><FONT SIZE=3> ERROR</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  <B>if</B> ( ( S.top1+1 ) = = ( S.top2 ) )  <B>return </B>ERROR;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果两个栈满，则返回</FONT><FONT SIZE=3> ERROR</P>
+<P ALIGN="JUSTIFY">&#9;&#9;<B>else  {&#9;</B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果栈未满，则进行入栈操作</P><DIR>
+
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">if</B> ( ( S.flag <B>! </B>= 1 ) <B>&amp;&amp;</B> ( S.flag <B>! </B>= 2 ) )</P>
+<B><P ALIGN="JUSTIFY">  return </B>ERROR;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果</FONT><FONT SIZE=3> <I>flag </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>不为</FONT><FONT SIZE=3> 1,2</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，则返回</FONT><FONT SIZE=3> ERROR</P></DIR>
+
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;</FONT><B><FONT SIZE=3>else  {&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</B>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果</FONT><FONT SIZE=3> <I>flag </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为</FONT><FONT SIZE=3> 1 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>或</FONT><FONT SIZE=3> 2</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，则入栈</P><DIR>
+
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  switch</B> ( S.flag )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P><DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">case</B> 1 <B>:&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</B>//<B> </B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>标志位</FONT><FONT SIZE=3> <I>flag </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为</FONT><FONT SIZE=3> 1</P></DIR>
+</DIR>
+
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><FONT SIZE=3>  S.data[S.top1] = x;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>元素</FONT><FONT SIZE=3> <I>x</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>入栈</FONT><FONT SIZE=3> <I>S</I><SUB>1</P><DIR>
+<DIR>
+
+</SUB><P ALIGN="JUSTIFY">  S.top1++;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>修改栈</FONT><FONT SIZE=3> <I>S</I><SUB>1</SUB> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的栈顶指针</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  break</B>;</P></DIR>
+</DIR>
+
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><B><FONT SIZE=3>case</B> 2 <B>:&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</B>//<B> </B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>标志位</FONT><FONT SIZE=3> <I>flag </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为</FONT><FONT SIZE=3> 2</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;  S.data[S.top2] = x;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>元素</FONT><FONT SIZE=3> <I>x</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>入栈</FONT><FONT SIZE=3> <I>S</I><SUB>2</P><DIR>
+<DIR>
+
+</SUB><P ALIGN="JUSTIFY">  S.top2--;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>修改栈</FONT><FONT SIZE=3> <I>S</I><SUB>2</SUB> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的栈顶指针</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  break</B>;</P></DIR>
+</DIR>
+
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;&#9;<B>}</B></FONT><FONT SIZE=3> // switch </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  <B>return</B> OK;</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // else </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // else </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<B><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // DuSqStackPush</P>
+<P ALIGN="JUSTIFY">(2) </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>出栈算法。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    <B>Status</B>  DuSqStackPop ( DuSqStack <B>&amp;</B>S,  SElemType <B>&amp;</B>x )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>栈</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为共享顺序栈类型</FONT><FONT SIZE=3> DuSqStack</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，含</FONT><FONT SIZE=3> top1</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>、</FONT><FONT SIZE=3>top2 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> data </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>数组域</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>此算法删除栈</FONT><FONT SIZE=3> <I>S</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中栈顶元素，并用</FONT><FONT SIZE=3> <I>x</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>返回其值；如果栈空，则返回</FONT><FONT SIZE=3> ERROR</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  <B>if</B> ( ( S.flag <B>! </B>= 1 ) <B>&amp;&amp;</B> ( S.flag <B>! </B>= 2 ) )</P><DIR>
+
+<B><P ALIGN="JUSTIFY">return</B> ERROR;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果</FONT><FONT SIZE=3> <I>flag</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>≠</FONT><FONT SIZE=3>1,2</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，则返回</FONT><FONT SIZE=3> ERROR</P></DIR>
+
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  <B>else  {&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</B>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果</FONT><FONT SIZE=3> <I>flag </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为</FONT><FONT SIZE=3> 1 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>或</FONT><FONT SIZE=3> 2</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，则出栈</P><DIR>
+
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">switch</B> ( S.flag )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{&#9;</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  case</B> 1<B>:&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</B>//<B> </B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>标志位</FONT><FONT SIZE=3> <I>flag </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为</FONT><FONT SIZE=3> 1</P></DIR>
+
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><B><FONT SIZE=3>if</B> ( S.top1 &gt; 0 )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</B>&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果栈</FONT><FONT SIZE=3> <I>S</I><SUB>1 </SUB></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>不空，则对</FONT><FONT SIZE=3> <I>S</I><SUB>1</SUB> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>进行操作</P><DIR>
+<DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">S.top1--;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>修改栈</FONT><FONT SIZE=3> <I>S</I><SUB>1</SUB> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的栈顶指针</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">x = S.data[S.top1];&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>元素</FONT><FONT SIZE=3> <I>x</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>出栈</P></DIR>
+</DIR>
+
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3> &#9;</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</FONT><FONT SIZE=3> </B>//<B> </B>if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束&#9;</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><B><FONT SIZE=3>else</B>  <B>return</B> ERROR;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果栈</FONT><FONT SIZE=3> <I>S</I><SUB>1 </SUB></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为空，则返回</FONT><FONT SIZE=3> ERROR</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;<B>break</B>;</P>
+<P ALIGN="JUSTIFY">&#9;&#9;  <B>case</B> 2 <B>:&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</B>//<B> </B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>标志位</FONT><FONT SIZE=3> <I>flag </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为</FONT><FONT SIZE=3> 1</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;<B>if</B> ( S.top2&lt;MAXSIZE-1 )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{&#9;&#9;&#9;&#9;</B></FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果栈</FONT><FONT SIZE=3> <I>S</I><SUB>2 </SUB></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>不空，则对</FONT><FONT SIZE=3> <I>S</I><SUB>2</SUB> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>进行操作</P><DIR>
+<DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  S.top2++;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>修改栈</FONT><FONT SIZE=3> <I>S</I><SUB>2</SUB> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的栈顶指针</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  x = S.data[S.top2];&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>元素</FONT><FONT SIZE=3> <I>x</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>出栈</P></DIR>
+</DIR>
+
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;<B>}</FONT><FONT SIZE=3> </B>// if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;</FONT><B><FONT SIZE=3>else  return</B> ERROR;&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果栈</FONT><FONT SIZE=3> <I>S</I><SUB>2 </SUB></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为空，则返回</FONT><FONT SIZE=3> ERROR</P>
+<P ALIGN="JUSTIFY">&#9;&#9;&#9;<B>break</B>;</P>
+<P ALIGN="JUSTIFY">&#9;&#9;  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // switch</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><B><FONT SIZE=3>return</B> OK;</P>
+<P ALIGN="JUSTIFY">&#9;  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // else</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<B><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // DuSqStackPop</P></FONT></BODY>
+</HTML>

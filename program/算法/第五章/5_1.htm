@@ -1,0 +1,40 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">1. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>构造数组算法</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    Status</B>  InitArray ( Array  <B>&amp;</B>A,  <B>int</B>  dim,  … )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若维数</FONT><FONT SIZE=3> <I>dim</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和随后的各维长度合法，则构造相应的数组</FONT><FONT SIZE=3> <I>A</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，并返回</FONT><FONT SIZE=3> OK</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( dim &lt; 1 <B>||</B> dim &gt; MAX_ARRAY_DIM )</P><DIR>
+
+<B><P ALIGN="JUSTIFY">return</B> ERROR;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若维数</FONT><FONT SIZE=3> <I>dim</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>不合法，则返回</FONT><FONT SIZE=3> ERROR</P></DIR>
+
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  A.dim = dim;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>设置数组维数</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  A.bounds = ( <B>int</B> *) <B>malloc</B> ( dim * <B>sizeof</B> ( <B>int</B> ) );</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为数组</FONT><FONT SIZE=3> <I>A</I>.bounds </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>分配空间</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( <B>!</B> A.bounds )  <B>exit</B> ( OVERFLOW );</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  elemtotal = 0;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>设</FONT><FONT SIZE=3> <I>A</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的元素总数初值</FONT><FONT SIZE=3> <I>elemtotal </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为</FONT><FONT SIZE=3> 0</P>
+<P ALIGN="JUSTIFY">  va_start ( ap, dim );</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// <I>ap</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为</FONT><FONT SIZE=3>va_list </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>类型，是存放变长参数表信息数组</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>for</B> ( i = 0;  i &lt; dim;  i++ )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若各维长度合法，则存入</FONT><FONT SIZE=3> <I>A</I>.bounds</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，并求出</FONT><FONT SIZE=3> <I>A</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的元素总数</FONT><FONT SIZE=3> <I>elemtotal</P>
+</I><P ALIGN="JUSTIFY">      </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>A.bounds[i] = va_arg ( ap, <B>int</B> );</P>
+<P ALIGN="JUSTIFY">      </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>if</B> ( A.bounds[i] &lt; 0 )  <B>return</B> UNDERFLOW;</P>
+<P ALIGN="JUSTIFY">      </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>elemtotal *= A.bounds[i];</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  va_end ( ap );</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  A.base = ( ElemType *) <B>malloc</B> ( elemtotal * <B>sizeof</B> ( ElemType ) );</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为数组</FONT><FONT SIZE=3> <I>A</I>.base </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>分配空间</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( <B>!</B> A.base )  <B>exit</B> ( OVERFLOW );</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  A.constants = ( <B>int</B> *) <B>malloc</B> ( dim * <B>sizeof</B> ( <B>int</B> ) );</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为数组</FONT><FONT SIZE=3> <I>A</I>.constants </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>分配空间</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( <B>!</B> A.constants )  <B>exit</B> ( OVERFLOW );</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  A.constants[dim-1] = 1;</P>
+<P ALIGN="JUSTIFY">  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>设元素大小</FONT><FONT SIZE=3> <I>L</I> = 1</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，指针的增减以元素的大小为单位</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>for</B> ( i = dim-2;  i &gt;= 0;  --i )  A.constants[i] = A.bounds[i+1] * A.constants [i+1];</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>求各维的常数</FONT><FONT SIZE=3> <I>c<SUB>i</I></SUB></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，并存入</FONT><FONT SIZE=3> <I>A</I>.constants[<I>i</I>-1]</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，</FONT><I><FONT SIZE=3>i</I> = 1,…, <I>dim</P>
+</I><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>return</B> OK;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // InitArray</P></FONT></BODY>
+</HTML>

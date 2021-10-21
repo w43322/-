@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">2. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>顺序线性表的插入算法</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    <B>Status</B>  ListInsert_sq ( SqList  <B>&amp;</B>L,  <B>int</B>  i,  ElemType e )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>在顺序线性表</FONT><FONT SIZE=3> <I>L</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中第</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个位置之前插入新的元素</FONT><FONT SIZE=3> <I>e</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，</FONT><FONT SIZE=3>1</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>≤</FONT><I><FONT SIZE=3>i</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>≤</FONT><FONT SIZE=3>ListLength_Sq (<I>L</I>) + 1</P>
+<B><P ALIGN="JUSTIFY">  if</B> ( i &lt; 1 <B>||</B> i &gt; L.length + 1)  <B>return</B> ERROR;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>// <I>i </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>值不合法</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  if</B> ( L.length &gt;= L.listsize )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</B>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>当前存储空间已满，增加分配</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>newbase = ( ElemType * ) <B>realloc</B> ( L.elem, ( L.listsize + LISTINCREMENT ) * <B>sizeof</B> ( ElemType ) );</P>
+<P ALIGN="JUSTIFY">  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>if</B> ( <B>!</B> Newbase )  <B>exit</B> ( OVERFLOW );</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>存储分配失败</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>L.elem = newbase;&#9;&#9;&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>新基址</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>L.listsize + = LISTINCREMENT;&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>增加存储容量</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  }</B> // if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>语句结束</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  q = <B>&amp;</B>( L.elem [ i-1] );&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>// <I>q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为插入位置</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  <B>for</B> ( p = <B>&amp;</B> ( L.elem [ L.length – 1 ] );  p &gt;= q;  -p )</P><DIR>
+
+<P ALIGN="JUSTIFY">*(p+1) = *p;&#9;&#9;&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>插入位置及之后的元素右移</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  *q = e;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>插入</FONT><FONT SIZE=3> <I>e</P></DIR>
+
+</I><P ALIGN="JUSTIFY">  ++L.length;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>表长增</FONT><FONT SIZE=3> 1</P>
+<P ALIGN="JUSTIFY">  <B>return</B> OK;</P>
+<P ALIGN="JUSTIFY">    </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // ListInsert_Sq</P></FONT></BODY>
+</HTML>

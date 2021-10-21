@@ -1,0 +1,20 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">4. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>取值操作算法</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    Status</B>  Value ( Array  A,  ElemType  <B>&amp;</B>e,  … )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // <I>A</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>是</FONT><FONT SIZE=3> <I>n</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>维数组，</FONT><I><FONT SIZE=3>e</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为元素变量，随后是</FONT><FONT SIZE=3> <I>n</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个下标值。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若各下标不超界，则</FONT><FONT SIZE=3> <I>e</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>赋值为所指定的</FONT><FONT SIZE=3> <I>A</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的元素值，并返回</FONT><FONT SIZE=3> OK</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  va_start ( ap, e );</P>
+<P ALIGN="JUSTIFY">  // <I>ap</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为</FONT><FONT SIZE=3> va_list </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>类型，存放变长参数表信息数组</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( ( result = Locate ( A, ap, off ) ) &lt; = 0 )  <B>return </B>result;</P>
+<P ALIGN="JUSTIFY">  // Locate </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>函数的功能为：若</FONT><FONT SIZE=3> <I>ap</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>指示的各个标值合法，则将该元素在</FONT><FONT SIZE=3> <I>A</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中的相对地址</FONT><FONT SIZE=3> <I>off</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>返回。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  e = *( A.base + off );  va_end ( ap );</P>
+<P ALIGN="JUSTIFY">  <B>return </B>OK;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // Value</P></FONT></BODY>
+</HTML>

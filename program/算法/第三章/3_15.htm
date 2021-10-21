@@ -1,0 +1,20 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">15. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>在链式队列头删除旧元素算法</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    Status</B>  DeQueue ( LinkQueue  <B>&amp;</B>Q,  QElemType  <B>&amp;</B>e )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果队列空，返回</FONT><FONT SIZE=3> ERROR</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>；如果队列不空，删除</FONT><FONT SIZE=3> <I>Q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的队列头元素，用</FONT><FONT SIZE=3> <I>e</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>返回其值，并返回</FONT><FONT SIZE=3> OK </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>。</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  if</B> ( Q.front = = Q.rear )  <B>return</B> ERROR;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>如果队列为空则无法进行删除，则返回</FONT><FONT SIZE=3> ERROR</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  p = Q.front-&gt;next;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>令</FONT><FONT SIZE=3> <I>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>指向队列</FONT><FONT SIZE=3> <I>Q</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的头</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  e = p-&gt;data;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>将队头结点的值取出并放入</FONT><FONT SIZE=3> <I>e</P>
+</I><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  Q.front-&gt;next = p-&gt;next;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>修改队头指针</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( Q.rear = = p )  Q.rear = Q.front;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若删除队头元素，则令队尾指针等于队头指针</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>free</B> ( p );</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>释放队头元素所占空间</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  return</B> OK;</P>
+<B><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // DeQueue</P></FONT></BODY>
+</HTML>

@@ -1,0 +1,36 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">11. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>例</FONT><FONT SIZE=3> 2-1  </B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>写一算法。将两个有序表</FONT><FONT SIZE=3> <I>A</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>B</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>归并成一个有序表</FONT><FONT SIZE=3> <I>C</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，其中</FONT><FONT SIZE=3> <I>A</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，</FONT><I><FONT SIZE=3>B</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，</FONT><I><FONT SIZE=3>C</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>均为</FONT><FONT SIZE=3> SqList </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>类型（即顺序表类型，为一结构体，含</FONT><FONT SIZE=3> length</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，</FONT><FONT SIZE=3>listsize </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> elem </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>数组指针部分）的参数。</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    Status </B>Merge_Sq ( SqList A,  SqList B,  SqList C )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </B>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>将两个有序顺序表</FONT><FONT SIZE=3> <I>A</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>B</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>合成一个有序顺序表</FONT><FONT SIZE=3> <I>C</P>
+</I><P ALIGN="JUSTIFY">  C.listsize = C.length = A.length + B.length;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>设置</FONT><FONT SIZE=3> <I>C</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>表的存储容量和表长</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  C.elem = ( ElemType *)<B> malloc</B> ( C.listzise * <B>sizeof </B>( ElemType ) )</P>
+<B><P ALIGN="JUSTIFY">  &#9;  if</B> ( <B>!</B> C.elem )  <B>exit</B> ( OVERFLOW );&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>存储空间分配失败</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  i = 0;    j = 0;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>j</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>是</FONT><FONT SIZE=3> <I>A</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>和</FONT><FONT SIZE=3> <I>B</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的</FONT><FONT SIZE=3> elem </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>数组的下标</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  k = 0;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;// <I>k</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>是</FONT><FONT SIZE=3> <I>C</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的</FONT><FONT SIZE=3> elem </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>数组的下标</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  while</B> ( ( i &lt;= A .length ) <B>&amp;&amp;</B> ( j &lt;= B.length ) )&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>归并</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><B><FONT SIZE=3>if</B> ( A.elem [i] &lt;= B.elem [j] )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  C.elem [k] = A.elem [i];</P>
+<P ALIGN="JUSTIFY">&#9;  i++;    k++;</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</FONT><FONT SIZE=3> </B>// if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><B><FONT SIZE=3>else  {</P>
+</B></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  C.elem [k] = B.elem [j];</P>
+<P ALIGN="JUSTIFY">&#9;  j++;    k++;</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</FONT><FONT SIZE=3> </B>// else </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  while</B> ( i &lt;= A.length )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</B>&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>插入有序顺序表</FONT><FONT SIZE=3> <I>A</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的剩余段</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>C.elem [k] = A.elem [i];&#9;&#9;</P>
+<P ALIGN="JUSTIFY">&#9;i++;    k++;</P>
+<B><P ALIGN="JUSTIFY">  } </B>// while </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  while</B> ( j &lt;= B.length )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</B>&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>插入有序顺序表</FONT><FONT SIZE=3> <I>B</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的剩余段</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>C.elem [k] = B.elem [j];</P>
+<P ALIGN="JUSTIFY">&#9;j++;    k++;</P>
+<B><P ALIGN="JUSTIFY">  }  </B>// while </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  return</B> OK;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // Merge_Sq</P></FONT></BODY>
+</HTML>

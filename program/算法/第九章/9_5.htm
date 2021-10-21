@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">5. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>直接选择排序算法</P>
+</B><P ALIGN="JUSTIFY">&#9;</FONT><B><FONT SIZE=3>void</B>  SelectSort ( SqList  <B>&amp;</B>L )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B><P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>对顺序表</FONT><FONT SIZE=3> <I>L</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>作直接选择排序</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  <B>for</B> ( i = 1;  i &lt; L.length;  ++i )  {&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>选择第</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个小的记录，并交换到位</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>k = i;</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;</FONT><B><FONT SIZE=3>for</B> ( j = i+1;  j &lt; L.length;  ++j )&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>在</FONT><FONT SIZE=3> <I>L.</I>r[<I>i</I>..<I>length</I>] </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中选择</FONT><FONT SIZE=3> <I>key</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>最小的记录</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  <B>if</B> ( L.r[j].key &lt; L.r[k].key )  k = j;</P>
+</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">&#9;&#9;</FONT><B><FONT SIZE=3>if</B> ( i <B>!</B> = k )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</B>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>与第</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个记录交换</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  temp = L.r[i];  L.r[i ] = L.r[k];  L.r[k] = temp;</P>
+<P ALIGN="JUSTIFY">&#9;&#9;</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // if </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<P ALIGN="JUSTIFY">&#9;</FONT><FONT SIZE=3>  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // for </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+<B><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // SelectSort</P></FONT></BODY>
+</HTML>

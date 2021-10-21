@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">11. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>求拓扑排序算法</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    Status</B>  TopologicalSort ( ALGraph  G )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>有向图</FONT><FONT SIZE=3> <I>G</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>采用邻接表存储结构。</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若</FONT><FONT SIZE=3> <I>G</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>无回路，则输出</FONT><FONT SIZE=3> <I>G</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的顶点的一个拓扑序列返回</FONT><FONT SIZE=3> OK</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，否则返回</FONT><FONT SIZE=3> ERROR</P>
+<P ALIGN="JUSTIFY">  FindInDegree ( G, indegree )&#9;&#9;&#9;&#9;&#9;// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>对各顶点求入度</FONT><FONT SIZE=3> indegree [ 0..vexnum-1]</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  InitStack (S);&#9;&#9;&#9;        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>初始化栈</FONT><FONT SIZE=3> <I>S</P>
+</I><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>for</B> ( i = 0;  i &lt; G.vexnum;  ++i )&#9;   </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>     </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>建</FONT><FONT SIZE=3> 0 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>入度顶点栈</FONT><FONT SIZE=3> <I>S</P>
+</I><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>if</B> ( <B>!</B> indegree [i] )  Push ( S, i );&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>入度为</FONT><FONT SIZE=3> 0 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的顶点序号入栈</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  count = 0;&#9;&#9;&#9;&#9;        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>初始化输出顶点计数器</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>while</B> ( <B>!</B> StackEmpty (S) )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>Pop ( S, i );&#9;&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>入度为</FONT><FONT SIZE=3> 0 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的顶点序号出栈</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>printf</B> ( i, G.vertices[i].data );&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>输出</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>号顶点</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>++count;&#9;&#9;&#9;&#9;&#9;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>对输出顶点计数</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">        </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><B><FONT SIZE=3>for</B> ( p = G.vertices[i].firstarc;  p;  p = p-&gt;nextarc )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B><P ALIGN="JUSTIFY">&#9;&#9;</FONT><FONT SIZE=3>  k = p-&gt;adjvex;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>对</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>号顶点的每个邻接点的入度减</FONT><FONT SIZE=3> 1</P><DIR>
+
+<B><P ALIGN="JUSTIFY">  if</B> ( <B>!</B> ( --indegree [k] ) )  Push ( S, k );</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若入度减为</FONT><FONT SIZE=3> 0 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，则入栈</P></DIR>
+
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">        </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // for </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}</B></FONT><FONT SIZE=3> // while </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结束</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      <B>if</B> ( count &lt; G.vexnum )  <B>return</B> ERROR; </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>该有向图有回路</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>else  return</B> OK;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // ToptlogicalSort</P></FONT></BODY>
+</HTML>

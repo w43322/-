@@ -1,0 +1,18 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">5. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>单链表的取元素算法</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    Status</B>  GetElem_L ( LinkList  L,  <B>int</B>  i,  ElemType  <B>&amp;</B>e )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // <I>L</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为带头结点的单链表的头指针，当第</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个元素存在时，其值赋给</FONT><FONT SIZE=3> <I>e</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>并返回</FONT><FONT SIZE=3> OK</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，否则返回</FONT><FONT SIZE=3> ERROR</P>
+<P ALIGN="JUSTIFY">  p = L-&gt;next;    j = 1;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>初始化。</FONT><I><FONT SIZE=3>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>指向链表第一个结点，</FONT><I><FONT SIZE=3>j</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为计数器</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">  while</B> ( p <B>&amp;&amp;</B> j&lt;i )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</FONT><FONT SIZE=3> </B>p = p-&gt;next;  ++j; </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>}&#9;&#9;</B></FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>顺指针向后查直到</FONT><FONT SIZE=3> <I>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>指向第</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个元素或为空</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  <B>if</B> ( <B>!</B> p || j&gt;i )  <B>return</B> ERROR;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>第</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个元素不存在</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  e = p-&gt;data;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>取第</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个元素</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  <B>return</B> OK;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // GetElem_L</P></FONT></BODY>
+</HTML>

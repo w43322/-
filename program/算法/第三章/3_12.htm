@@ -1,0 +1,17 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">12. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>构造空链式队列算法</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    Status</B>  InitQueue ( LinkQueue  <B>&amp;</B>Q )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>构造一个空队列</FONT><FONT SIZE=3> <I>Q</P>
+</I><P ALIGN="JUSTIFY">      Q.front = Q.rear = ( QueuePtr ) <B>malloc</B> ( <B>sizeof</B> ( QNode ) );</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>if</B> ( <B>!</B> Q.front )  <B>exit</B> ( OVERFLOW );</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>存储空间分配失败</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  Q.frone-&gt;next = NULL;&#9;</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>return</B> OK;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // InitQueue</P></FONT></BODY>
+</HTML>

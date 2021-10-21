@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=gb_2312-80">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>第 2 章  线性表</TITLE>
+</HEAD>
+<BODY>
+
+<B><FONT SIZE=3><P ALIGN="JUSTIFY">10. </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>双向链表的删除操作算法</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    Status</B>  ListDelete_DuL ( DuLinkList  <B>&amp;</B>L,  <B>int</B>  i,  ElemType  <B>&amp;</B>e )  </FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>{</P>
+</B></FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>删除带头结点的双向循环链表</FONT><FONT SIZE=3> <I>L </I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中第</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个元素并将元素值返回，</FONT><FONT SIZE=3>1</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>≤</FONT><I><FONT SIZE=3>i</I></FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>≤表长</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">      <B>if</B> ( <B>!</B> ( p = GetElemP_DuL ( L,  i ) ) )  <B>return</B> ERROR;&#9;</P>
+<P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>在</FONT><FONT SIZE=3> <I>L</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>中确定第</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个元素，</FONT><I><FONT SIZE=3>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为指向该结点的指针；</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  // </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>若</FONT><FONT SIZE=3> <I>i</I> &lt; 1 </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>或</FONT><FONT SIZE=3> <I>i</I> &gt; </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>表长，则</FONT><FONT SIZE=3> <I>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>为</FONT><FONT SIZE=3> NULL</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>，第</FONT><FONT SIZE=3> <I>i</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>个元素不存在</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  e = p-&gt;data;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>将</FONT><FONT SIZE=3> <I>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>指向的结点数据域中的值取出</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  p-&gt;prior-&gt;next = p-&gt;next;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>修改</FONT><FONT SIZE=3> <I>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的前驱结点的反向指针</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">  p-&gt;next-&gt;prior = p-&gt;prior;</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>修改</FONT><FONT SIZE=3> <I>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>的后继结点的前向指针</P>
+</FONT><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  <B>free</B> (p);</FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;&#9;</FONT><FONT SIZE=3>// </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>释放</FONT><FONT SIZE=3> <I>p</I> </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>结点</P>
+</FONT><B><FONT SIZE=3><P ALIGN="JUSTIFY">    </FONT><FONT FACE="宋体" LANG="ZH-CN" SIZE=3>&#9;</FONT><FONT SIZE=3>  return</B> OK;</P>
+</FONT><B><FONT FACE="宋体" LANG="ZH-CN" SIZE=3><P ALIGN="JUSTIFY">}</B></FONT><FONT SIZE=3> // ListDelete_DuL</P></FONT></BODY>
+</HTML>

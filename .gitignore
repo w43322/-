@@ -1,0 +1,7 @@
+*.dSYM
+*.DS_Store
+*.gitignode
+*.gitattributes
+/Users/w43322/Desktop/code/data_structure_assignment/实验/1/main
+/Users/w43322/Desktop/code/data_structure_assignment/实验/2/main
+/Users/w43322/Desktop/code/data_structure_assignment/实验/3/main

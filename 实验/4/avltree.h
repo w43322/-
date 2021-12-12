@@ -31,4 +31,5 @@ public:
     struct AVLNode* deleteAVLNode(struct AVLNode *,int);
     struct AVLNode* inpre(struct AVLNode*);
     struct AVLNode* insuc(struct AVLNode*);
+    struct AVLNode* find(struct AVLNode*,int);
 };

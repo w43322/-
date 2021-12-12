@@ -196,6 +196,27 @@ void MainWindow::on_ButtonFind_clicked()
     int x=ui->lcdNumber->intValue();
     qDebug()<<"Looking For:"<<endl<<"    "<<x;
 
+    if(Displaying==-1)
+    {
+        qDebug()<<"no tree being displayed";
+        on_ButtonCLR_clicked();
+        return;
+    }
+    AVLNode* res=TREE[Displaying].find(TREE[Displaying].root,x);
+    if(res==NULL)
+    {
+        qDebug()<<"not found";
+        on_ButtonCLR_clicked();
+        return;
+    }
+    else
+    {
+        CallDrawTree(Displaying);
+        res->lab.setStyleSheet("background-color: yellow; border: 2px solid red;\
+                                border-radius: "+QString::number(H/2)+"px;\
+                                font-size: "+QString::number(H/2)+"px;\
+                                color:red");
+    }
 
     on_ButtonCLR_clicked();
 }
@@ -213,6 +234,12 @@ void MainWindow::on_ButtonDelete_clicked()
         return;
     }
 
+    if(TREE[Displaying].find(TREE[Displaying].root,x)==NULL)
+    {
+        qDebug()<<"not found";
+        on_ButtonCLR_clicked();
+        return;
+    }
     TREE[Displaying].root=TREE[Displaying].deleteAVLNode(TREE[Displaying].root,x);
 
     if(TREE[Displaying].root!=NULL)

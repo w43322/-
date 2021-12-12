@@ -162,6 +162,16 @@ struct AVLNode* AVL::insert(struct AVLNode *r,int data)
 
 }
 
+struct AVLNode* AVL::find(struct AVLNode *r,int data)
+{
+    if(r==NULL)return NULL;
+    if(data<r->data)
+        return find(r->left,data);
+    else if(data>r->data)
+        return find(r->right,data);
+    else return r;
+}
+
 struct AVLNode * AVL::deleteAVLNode(struct AVLNode *p,int data)
 {
 

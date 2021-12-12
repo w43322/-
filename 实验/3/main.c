@@ -70,16 +70,6 @@ int main()
 }
 
 /*
-cd "/Users/w43322/Desktop/code/data_structure_assignment/实验/3/" && gcc main.c tree.c -o main
-"/Users/w43322/Desktop/code/data_structure_assignment/实验/3/"main
-*/
-
-/*
-cd "/home/w43322/桌面/code/data_structure_assignment-1/实验/3/" && gcc main.c tree.c -o main
-"/home/w43322/桌面/code/data_structure_assignment-1/实验/3/"main
-*/
-
-/*
 【问题描述】
 互联网域名系统是一个典型的树形层次结构。从根节点往下的第一层是顶层域，如cn、com等，最底层（第四层）是叶子结点，如www等。因此，域名搜索可以看成是树的遍历问题。
 【实验要求】

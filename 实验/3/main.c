@@ -13,9 +13,11 @@ void ShowWindow()
     //printf("--------10--------20--------30--------40\n");
     printf("________________________________________\n");
     printf("|                                      |\n");
-    printf("| 0-exit                               |\n");
-    printf("| 1-add                                |\n");
-    printf("| 2-find                               |\n");
+    printf("| 0 - exit  退出                       |\n");
+    printf("| 1 - add   添加                       |\n");
+    printf("| 2 - find  查找                       |\n");
+    printf("| 3 - dfs   深度优先遍历               |\n");
+    printf("| 4 - bfs   层次优先遍历               |\n");
     printf("|______________________________________|\n");
 }
 int main()
@@ -23,8 +25,7 @@ int main()
     int cmd;
     char buf[max_string_length];
     TreeNode *root=(TreeNode*)malloc(sizeof(TreeNode));
-    root->data[0]='/';
-    root->data[1]='\0';
+    root->data[0]='\0';
     root->firstchild=NULL;
     root->nextsibling=NULL;
     root->terminate=0;
@@ -36,25 +37,31 @@ int main()
         switch(cmd)
         {
             case 1:
-            printf("please input URL:\n");
-            scanf("%s",buf);
-            Add(root,buf);
-            break;
+                printf("please input URL:\n");
+                scanf("%s",buf);
+                Add(root,buf);
+                break;
             case 2:
-            printf("please input URL:\n");
-            scanf("%s",buf);
-            TreeNode *res=Find(root,buf);
-            if(res)
-            {
-                if(res->terminate)
-                    printf("FULL MATCH ");
-                printf("FOUND\n");
-            }
-            else
-                printf("NOTFOUND\n");
-            break;
+                printf("please input URL:\n");
+                scanf("%s",buf);
+                TreeNode *res=Find(root,buf);
+                if(res)
+                {
+                    if(res->terminate)
+                        printf("FULL MATCH ");
+                    printf("FOUND\n");
+                }
+                else
+                    printf("NOTFOUND\n");
+                break;
+            case 3:
+                DFS(root,"");
+                break;
+            case 4:
+                BFS(root);
+                break;
             default:
-            break;
+                break;
         }
         printf("\npress any key to continue...");
         getchar();getchar();
@@ -65,6 +72,11 @@ int main()
 /*
 cd "/Users/w43322/Desktop/code/data_structure_assignment/实验/3/" && gcc main.c tree.c -o main
 "/Users/w43322/Desktop/code/data_structure_assignment/实验/3/"main
+*/
+
+/*
+cd "/home/w43322/桌面/code/data_structure_assignment-1/实验/3/" && gcc main.c tree.c -o main
+"/home/w43322/桌面/code/data_structure_assignment-1/实验/3/"main
 */
 
 /*

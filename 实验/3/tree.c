@@ -85,3 +85,47 @@ TreeNode* Find(TreeNode *root,const char *URL)
         return NULL;
     }
 }
+void DFS(TreeNode *root,const char *URL)
+{
+    char NewURL[max_string_length];
+    if(strlen(URL)==0)
+        strcpy(NewURL,root->data);
+    else
+        sprintf(NewURL,"%s.%s",root->data,URL);
+    if(root->terminate)
+        printf("%s\n",NewURL);
+    TreeNode *child=root->firstchild;
+    while(child)
+    {
+        DFS(child,NewURL);
+        child=child->nextsibling;
+    }
+}
+void BFS(TreeNode *root)
+{
+    Queue *q=(Queue*)malloc(sizeof(Queue));
+    Init(q);
+    Push(q,root);
+    int lvl=0;
+    int now_lvl_cnt=1;
+    int next_lvl_cnt=0;
+    while(!Empty(q))
+    {
+        TreeNode *NowNode=Pop(q);
+        printf("%s ",NowNode->data);--now_lvl_cnt;
+        TreeNode *child=NowNode->firstchild;
+        while(child)
+        {
+            ++next_lvl_cnt;
+            Push(q,child);
+            child=child->nextsibling;
+        }
+        if(now_lvl_cnt==0&&next_lvl_cnt)
+        {
+            printf("\n---level:%d---\n",++lvl);
+            now_lvl_cnt=next_lvl_cnt;
+            next_lvl_cnt=0;
+        }
+    }
+    free(q);
+}

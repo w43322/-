@@ -1,4 +1,6 @@
-#pragma once
+#ifndef QUEUE_H
+#define QUEUE_H
+
 #include"universal_header.h"
 typedef struct
 {
@@ -9,3 +11,5 @@ void init(Queue*);
 int push(Queue*,char*);
 int pop(Queue*,char*);
 int empty(Queue*);
+
+#endif //QUEUE_H

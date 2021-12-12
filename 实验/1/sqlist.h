@@ -1,3 +1,6 @@
+#ifndef SQLIST_H
+#define SQLIST_H
+
 #include"universal_header.h"
 typedef struct
 {
@@ -11,3 +14,5 @@ void print(SqList*);
 void get_union(SqList*,SqList*,SqList*);
 void get_intersection(SqList*,SqList*,SqList*);
 void get_diff(SqList*,SqList*,SqList*);
+
+#endif //SQLIST_H

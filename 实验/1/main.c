@@ -11,9 +11,6 @@ int main()
     scanf("%s",tmp);
     init(&set_b,tmp);
 
-    //print(&set_a);
-    //print(&set_b);
-
     printf("\n----------输出----------\n");
     printf("\n集合A：");
     print(&set_a);
@@ -33,9 +30,6 @@ int main()
 
     return 0;
 }
-/*
-cd "/Users/w43322/Desktop/code/data_structure_assignment/实验/1/" && gcc main.c sqlist.c -o main && "/Users/w43322/Desktop/code/data_structure_assignment/实验/1/"main
-*/
 
 /*
 3、集合的并交差运算

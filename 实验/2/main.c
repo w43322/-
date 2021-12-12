@@ -46,10 +46,6 @@ int main()
 }
 
 /*
-cd "/Users/w43322/Desktop/code/data_structure_assignment/实验/2/" && gcc main.c queue.c -o main && "/Users/w43322/Desktop/code/data_structure_assignment/实验/2/"main
-*/
-
-/*
 3、运动员混合双打组合 
 【问题描述】
 设有M个男羽毛球运动员和N个女羽毛球运动员，现进行男女混合双打组合K轮配对。男女运动员分别编号排队在等候队列，按顺序依次从男女运动员中各出队1人组合配对。本轮没成功配对者等待下一轮次配对。

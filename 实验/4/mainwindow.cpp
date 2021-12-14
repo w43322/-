@@ -7,9 +7,11 @@
 #include<QPainter>
 #include "avltree.h"
 
+#include<cmath>
+
 int Displaying=-1;
 
-std::vector<AVL>TREE;
+std::vector<struct AVLNode*>TREE;
 
 int D;
 const int W=40,H=30;
@@ -26,11 +28,11 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    while(TREE.size())
+    while(!TREE.empty())
     {
-        auto tree=TREE.begin();
-        while(tree->root)
-            tree->root=tree->deleteAVLNode(tree->root,tree->root->data);
+        auto root=*TREE.begin();
+        while(root)
+            root=deleteAVLNode(root,root->data,root);
         TREE.erase(TREE.begin());
     }
     delete ui;
@@ -124,18 +126,18 @@ void MainWindow::DrawTree(void *pt,Cord now_cord,int now_depth)
 
 void MainWindow::CallDrawTree(int whichTree)
 {
-    D=TREE[whichTree].calheight(TREE[whichTree].root);
+    D=calheight(TREE[whichTree]);
     qDebug()<<"tree height"<<D;
     int Xroot=0.5*(W+LeafOffsetX)*(pow(2,D-1)-1);
     Cord CordRoot;
     CordRoot.x=Xroot,CordRoot.y=0;
     if(Displaying!=-1)
     {
-        qDebug()<<"hiding"<<TREE[Displaying].root;
-        Hide(TREE[Displaying].root);
+        qDebug()<<"hiding"<<TREE[Displaying];
+        Hide(TREE[Displaying]);
         Displaying=-1;
     }
-    DrawTree(TREE[whichTree].root,CordRoot,1);
+    DrawTree(TREE[whichTree],CordRoot,1);
     Displaying=whichTree;
     update();
 }
@@ -180,10 +182,10 @@ void MainWindow::on_ButtonInsert_clicked()
         return;
     }
     qDebug()<<"to tree"<<Displaying;
-    TREE[Displaying].root=TREE[Displaying].insert(TREE[Displaying].root,x);
+    TREE[Displaying]=insert(TREE[Displaying],x);
 
-    ui->tableWidget->setItem(Displaying,2,new QTableWidgetItem(QString::number(TREE[Displaying].root->data)));
-    ui->tableWidget->setItem(Displaying,3,new QTableWidgetItem(QString::number((long long)TREE[Displaying].root,16)));
+    ui->tableWidget->setItem(Displaying,2,new QTableWidgetItem(QString::number(TREE[Displaying]->data)));
+    ui->tableWidget->setItem(Displaying,3,new QTableWidgetItem(QString::number((long long)TREE[Displaying],16)));
 
     CallDrawTree(Displaying);
 
@@ -202,7 +204,7 @@ void MainWindow::on_ButtonFind_clicked()
         on_ButtonCLR_clicked();
         return;
     }
-    AVLNode* res=TREE[Displaying].find(TREE[Displaying].root,x);
+    AVLNode* res=FIND(TREE[Displaying],x);
     if(res==NULL)
     {
         qDebug()<<"not found";
@@ -234,18 +236,18 @@ void MainWindow::on_ButtonDelete_clicked()
         return;
     }
 
-    if(TREE[Displaying].find(TREE[Displaying].root,x)==NULL)
+    if(FIND(TREE[Displaying],x)==NULL)
     {
         qDebug()<<"not found";
         on_ButtonCLR_clicked();
         return;
     }
-    TREE[Displaying].root=TREE[Displaying].deleteAVLNode(TREE[Displaying].root,x);
+    TREE[Displaying]=deleteAVLNode(TREE[Displaying],x,TREE[Displaying]);
 
-    if(TREE[Displaying].root!=NULL)
+    if(TREE[Displaying]!=NULL)
     {
-        ui->tableWidget->setItem(Displaying,2,new QTableWidgetItem(QString::number(TREE[Displaying].root->data)));
-        ui->tableWidget->setItem(Displaying,3,new QTableWidgetItem(QString::number((long long)TREE[Displaying].root,16)));
+        ui->tableWidget->setItem(Displaying,2,new QTableWidgetItem(QString::number(TREE[Displaying]->data)));
+        ui->tableWidget->setItem(Displaying,3,new QTableWidgetItem(QString::number((long long)TREE[Displaying],16)));
 
         CallDrawTree(Displaying);
     }
@@ -267,10 +269,10 @@ void MainWindow::on_ButtonNewTree_clicked()
     int x=ui->lcdNumber->intValue();
     //qDebug()<<"New Tree:"<<endl<<"    "<<x;
 
-    AVL NewTree;
-    NewTree.root=NewTree.insert(NewTree.root,x);
+    struct AVLNode *NewTree=NULL;
+    NewTree=insert(NewTree,x);
 
-    //qDebug()<<"got new addr"<<NewTree.root;
+    qDebug()<<"got new addr"<<NewTree;
 
     TREE.push_back(NewTree);
 
@@ -280,8 +282,8 @@ void MainWindow::on_ButtonNewTree_clicked()
     ui->tableWidget->setItem(TREE.size()-1,0,checkBoxItem);
     //ui->tableWidget->setCellWidget(TREE.size()-1,0,new QCheckBox);
     ui->tableWidget->setItem(TREE.size()-1,1,new QTableWidgetItem(QString::number(TREE.size()-1)));
-    ui->tableWidget->setItem(TREE.size()-1,2,new QTableWidgetItem(QString::number(NewTree.root->data)));
-    ui->tableWidget->setItem(TREE.size()-1,3,new QTableWidgetItem(QString::number((long long)NewTree.root,16)));
+    ui->tableWidget->setItem(TREE.size()-1,2,new QTableWidgetItem(QString::number(NewTree->data)));
+    ui->tableWidget->setItem(TREE.size()-1,3,new QTableWidgetItem(QString::number((long long)NewTree,16)));
 
 
     on_ButtonCLR_clicked();
@@ -315,14 +317,14 @@ void MainWindow::on_ButtonMergeTree_clicked()
         if(!ui->tableWidget->item(i,0)->checkState())
             continue;
         qDebug()<<i<<"is going to be merged with"<<FirstSelected;
-        while(TREE[i].root)
+        while(TREE[i])
         {
 
-            TREE[FirstSelected].root=TREE[FirstSelected].insert(TREE[FirstSelected].root,TREE[i].root->data);
-            TREE[i].root=TREE[i].deleteAVLNode(TREE[i].root,TREE[i].root->data);
+            TREE[FirstSelected]=insert(TREE[FirstSelected],TREE[i]->data);
+            TREE[i]=deleteAVLNode(TREE[i],TREE[i]->data,TREE[i]);
 
-            ui->tableWidget->setItem(FirstSelected,2,new QTableWidgetItem(QString::number(TREE[FirstSelected].root->data)));
-            ui->tableWidget->setItem(FirstSelected,3,new QTableWidgetItem(QString::number((long long)TREE[FirstSelected].root,16)));
+            ui->tableWidget->setItem(FirstSelected,2,new QTableWidgetItem(QString::number(TREE[FirstSelected]->data)));
+            ui->tableWidget->setItem(FirstSelected,3,new QTableWidgetItem(QString::number((long long)TREE[FirstSelected],16)));
 
             CallDrawTree(FirstSelected);
         }
@@ -342,13 +344,13 @@ void MainWindow::on_ButtonDeleteTree_clicked()
             continue;
         if(Displaying!=-1)
         {
-            qDebug()<<"hiding"<<TREE[Displaying].root;
-            Hide(TREE[Displaying].root);
+            qDebug()<<"hiding"<<TREE[Displaying];
+            Hide(TREE[Displaying]);
             Displaying=-1;
         }
         qDebug()<<i<<"is going to be deleted";
-        while(TREE[i].root)
-            TREE[i].root=TREE[i].deleteAVLNode(TREE[i].root,TREE[i].root->data);
+        while(TREE[i])
+            TREE[i]=deleteAVLNode(TREE[i],TREE[i]->data,TREE[i]);
         TREE.erase(TREE.begin()+i);
         ui->tableWidget->removeRow(i);
         --i;

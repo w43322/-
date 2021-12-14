@@ -1,16 +1,6 @@
 #include"avltree.h"
 
-AVL::AVL()
-{
-    this->root=NULL;
-}
-
-AVL::~AVL()
-{
-
-}
-
-int AVL::calheight(struct AVLNode *p)
+int calheight(struct AVLNode *p)
 {
     //qDebug()<<"calheight"<<endl<<"    "<<"val"<<p->data<<"addr"<<p;
     if(p==NULL)return 0;
@@ -28,7 +18,7 @@ int AVL::calheight(struct AVLNode *p)
     return 1;
 }
 
-int AVL::bf(struct AVLNode *n)
+int bf(struct AVLNode *n)
 {
     if(n==NULL)return 0;
 
@@ -41,7 +31,7 @@ int AVL::bf(struct AVLNode *n)
     return 0;//not used
 }
 
-struct AVLNode * AVL::llrotation(struct AVLNode *n)
+struct AVLNode *llrotation(struct AVLNode *n)
 {
     struct AVLNode *p;
     struct AVLNode *tp;
@@ -58,7 +48,7 @@ struct AVLNode * AVL::llrotation(struct AVLNode *n)
 }
 
 
-struct AVLNode * AVL::rrrotation(struct AVLNode *n)
+struct AVLNode *rrrotation(struct AVLNode *n)
 {
     struct AVLNode *p;
     struct AVLNode *tp;
@@ -75,7 +65,7 @@ struct AVLNode * AVL::rrrotation(struct AVLNode *n)
 }
 
 
-struct AVLNode * AVL::rlrotation(struct AVLNode *n)
+struct AVLNode *rlrotation(struct AVLNode *n)
 {
     struct AVLNode *p;
     struct AVLNode *tp;
@@ -96,7 +86,7 @@ struct AVLNode * AVL::rlrotation(struct AVLNode *n)
     return tp2;
 }
 
-struct AVLNode * AVL::lrrotation(struct AVLNode *n)
+struct AVLNode *lrrotation(struct AVLNode *n)
 {
     struct AVLNode *p;
     struct AVLNode *tp;
@@ -117,7 +107,7 @@ struct AVLNode * AVL::lrrotation(struct AVLNode *n)
     return tp2;
 }
 
-struct AVLNode* AVL::insert(struct AVLNode *r,int data)
+struct AVLNode *insert(struct AVLNode *r,int data)
 {
     qDebug()<<"insert addr"<<r;
     if(r==NULL)//如果当前位置为空，就在此处插入新节点
@@ -162,23 +152,23 @@ struct AVLNode* AVL::insert(struct AVLNode *r,int data)
 
 }
 
-struct AVLNode* AVL::find(struct AVLNode *r,int data)
+struct AVLNode *FIND(struct AVLNode *r,int data)
 {
     if(r==NULL)return NULL;
     if(data<r->data)
-        return find(r->left,data);
+        return FIND(r->left,data);
     else if(data>r->data)
-        return find(r->right,data);
+        return FIND(r->right,data);
     else return r;
 }
 
-struct AVLNode * AVL::deleteAVLNode(struct AVLNode *p,int data)
+struct AVLNode *deleteAVLNode(struct AVLNode *p,int data,struct AVLNode *root)
 {
 
     if(p->left==NULL&&p->right==NULL)//如果当前节点是叶子节点，直接删除
     {
-        if(p==this->root)//如果是AVL树的根
-            this->root=NULL;
+        if(p==root)//如果是AVL树的根
+            root=NULL;
         delete p;
         return NULL;
     }
@@ -186,9 +176,9 @@ struct AVLNode * AVL::deleteAVLNode(struct AVLNode *p,int data)
     struct AVLNode *q;
     //递归调用删除函数来在左右子树寻找节点
     if(p->data<data)
-        p->right=deleteAVLNode(p->right,data);
+        p->right=deleteAVLNode(p->right,data,root);
     else if(p->data>data)
-        p->left=deleteAVLNode(p->left,data);
+        p->left=deleteAVLNode(p->left,data,root);
     else//找到了要删除的节点
     {
         if(p->left!=NULL)//如果左子树非空，将当前节点的值与左子树中的最大值交换
@@ -196,14 +186,14 @@ struct AVLNode * AVL::deleteAVLNode(struct AVLNode *p,int data)
             q=inpre(p->left);
             p->data=q->data;
             //p->lab.setText(QString::number(p->data));
-            p->left=deleteAVLNode(p->left,q->data);
+            p->left=deleteAVLNode(p->left,q->data,root);
         }
         else//右子树非空，将当前节点的值与右子树中的最小值交换
         {
             q=insuc(p->right);
             p->data=q->data;
             //p->lab.setText(QString::number(p->data));
-            p->right=deleteAVLNode(p->right,q->data);
+            p->right=deleteAVLNode(p->right,q->data,root);
         }
     }
 
@@ -225,14 +215,14 @@ struct AVLNode * AVL::deleteAVLNode(struct AVLNode *p,int data)
     return p;
 }
 
-struct AVLNode* AVL::inpre(struct AVLNode* p)
+struct AVLNode *inpre(struct AVLNode* p)
 {
     while(p->right!=NULL)
         p=p->right;
     return p;
 }
 
-struct AVLNode* AVL::insuc(struct AVLNode* p)
+struct AVLNode *insuc(struct AVLNode* p)
 {
     while(p->left!=NULL)
         p=p->left;

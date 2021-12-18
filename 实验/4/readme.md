@@ -1,0 +1,336 @@
+# 实验五
+## 1. 问题定义及需求分析
+### 1.1 问题描述
+##### 利用平衡二叉树设计动态查找表。
+### 1.2 实验要求
+##### 设计平衡二叉树的动态演示的模拟程序。
+###### （1）采用平衡二叉树存储结构。
+###### （2）完成平衡二叉树的创建、查找、插入和删除的演示操作。
+###### （3）可以考虑两棵平衡二叉树的合并。
+### 1.3 数据形式
+#### 1.3.1 输入的形式
+##### 通过键盘输入数据输入值的范围：树中元素的值为int型
+#### 1.3.2 输出的形式
+##### 输出到QT窗口
+### 1.4 程序的功能
+##### 创建平衡二叉树存储结构，通过平衡因子，使二叉排序树达到平衡，提供平衡二叉树的创建、查找和删除，树中元素的查找、插入和删除等基本功能，可以实现创建多棵平衡二叉树，并且能够进行两棵树的合并。通过平衡二叉树，能够使树时刻保持平衡，从而提高在树中遍历数据的速度，具有重要意义。
+### 1.6 测试数据（样例）
+
+#### 1.6.1 输入
+#### 1.6.2 输出
+## 2.概要设计
+### 2.1 抽象数据类型定义
+##### ADT AVLTREE{
+##### Data int类型；
+##### 数据元素操作
+##### int calheight(struct AVLNode *);//计算数的高度
+##### int bf(struct AVLNode *);//计算根节点的平衡因子
+##### struct AVLNode * llrotation(struct AVLNode *);//LL旋转
+##### struct AVLNode * lrrotation(struct AVLNode *);//LR旋转
+##### struct AVLNode * rlrotation(struct AVLNode *);//Rl旋转
+##### struct AVLNode * rrrotation(struct AVLNode *);//RR旋转
+##### struct AVLNode* insert(struct AVLNode *,int);//插入结点
+##### struct AVLNode* deleteAVLNode(struct AVLNode *,int);//删除结点
+##### struct AVLNode* inpre(struct AVLNode*);//求某个结点的前驱
+##### struct AVLNode* insuc(struct AVLNode*);//求某个结点的后继
+##### struct AVLNode* find(struct AVLNode*,int);//查找某个结点
+##### }
+### 2.2 主程序流程
+### 2.3 模块调用关系（图片）
+## 3.详细设计
+### 3.1 定义数据类型及存储结构
+```C++
+/*平衡树结构声明*/
+struct AVLNode
+{
+    struct AVLNode *left,*right;//左右孩子
+    int data,height;//结点数据和数的高度
+    QLabel lab,Llink,Rlink;
+};
+
+class AVL
+{
+private:
+
+public:
+    struct AVLNode * root;
+    AVL();
+    ~AVL();
+    int calheight(struct AVLNode *);//计算数的高度
+    int bf(struct AVLNode *);//计算根节点的平衡因子
+    struct AVLNode * llrotation(struct AVLNode *);//LL旋转
+    struct AVLNode * lrrotation(struct AVLNode *);//LR旋转
+    struct AVLNode * rlrotation(struct AVLNode *);//Rl旋转
+    struct AVLNode * rrrotation(struct AVLNode *);//RR旋转
+    struct AVLNode* insert(struct AVLNode *,int);//插入结点
+    struct AVLNode* deleteAVLNode(struct AVLNode *,int);//删除结点
+    struct AVLNode* inpre(struct AVLNode*);//求某个结点的前驱
+    struct AVLNode* insuc(struct AVLNode*);//求某个结点的后继
+    struct AVLNode* find(struct AVLNode*,int);//查找某个结点
+};
+```
+### 3.2 每个函数及操作的代码 （代码）
+##### (1)计算树的高度
+```C++
+int AVL::calheight(struct AVLNode *p)
+{
+    if(p==NULL)return 0;
+    if(p->left&&p->right)
+    {
+        if(p->left->height<p->right->height)
+            return p->right->height+1;
+        else
+            return p->left->height+1;
+    }
+    else if(p->left&&p->right==NULL)
+        return p->left->height+1;
+    else if(p->left==NULL&&p->right)
+        return p->right->height+1;
+    return 1;
+}
+```
+##### (2)计算平衡因子
+```C++
+int AVL::bf(struct AVLNode *n)
+{
+    if(n==NULL)return 0;
+
+    if(n->left&&n->right)
+        return n->left->height-n->right->height;
+    else if(n->left&&n->right==NULL)
+        return n->left->height;
+    else if(n->left==NULL&&n->right)
+        return -n->right->height;
+    return 0;
+}
+```
+##### (3)LL旋转
+```C++
+struct AVLNode * AVL::llrotation(struct AVLNode *n)//单向左旋平衡处理
+{
+    struct AVLNode *p;
+    struct AVLNode *tp;
+    p=n;
+    tp=p->left;
+
+    p->left=tp->right;
+    tp->right=p;
+
+    p->height=calheight(p);
+    tp->height=calheight(tp);
+
+    return tp;
+}
+```
+##### (4)RR旋转
+```C++
+struct AVLNode * AVL::rrrotation(struct AVLNode *n)//单向右旋平衡处理
+{
+    struct AVLNode *p;
+    struct AVLNode *tp;
+    p=n;
+    tp=p->right;
+
+    p->right=tp->left;
+    tp->left=p;
+
+    p->height=calheight(p);
+    tp->height=calheight(tp);
+
+    return tp;
+}
+```
+##### (5)RL旋转
+```C++
+struct AVLNode * AVL::rlrotation(struct AVLNode *n)//双向旋转（先右后左）
+{
+    struct AVLNode *p;
+    struct AVLNode *tp;
+    struct AVLNode *tp2;
+    p=n;
+    tp=p->right;
+    tp2=p->right->left;
+
+    p->right=tp2->left;
+    tp->left=tp2->right;
+    tp2->left=p;
+    tp2->right=tp;
+
+    p->height=calheight(p);
+    tp->height=calheight(tp);
+    tp2->height=calheight(tp2);
+
+    return tp2;
+}
+```
+##### (6)LR旋转
+```C++
+struct AVLNode * AVL::lrrotation(struct AVLNode *n)//双向旋转（先左后右）
+{
+    struct AVLNode *p;
+    struct AVLNode *tp;
+    struct AVLNode *tp2;
+    p=n;
+    tp=p->left;
+    tp2=p->left->right;
+
+    p->left=tp2->right;
+    tp->right=tp2->left;
+    tp2->right=p;
+    tp2->left=tp;
+
+    p->height=calheight(p);
+    tp->height=calheight(tp);
+    tp2->height=calheight(tp2);
+
+    return tp2;
+}
+```
+##### (7)插入新结点
+```C++
+struct AVLNode* AVL::insert(struct AVLNode *r,int data)
+{
+    qDebug()<<"insert addr"<<r;
+    if(r==NULL)//如果当前位置为空，就在此处插入新节点
+    {
+        struct AVLNode *n;
+        n=new struct AVLNode;
+        n->data=data；
+        r=n;
+        r->left=r->right=NULL;
+        r->height=1;
+        return r;
+    }
+    else
+    {
+        if(data<r->data)
+            r->left=insert(r->left,data);
+        else if(data>r->data)
+            r->right=insert(r->right,data);
+    }
+
+    r->height=calheight(r);//新的节点已经在某个子树中插入，递归更新当前节点的高度
+
+    //如果不平衡，进行旋转
+    if(bf(r)>1&&bf(r->left)>0)
+        r=llrotation(r);
+    else if(bf(r)>1&&bf(r->left)<=0)
+        r=lrrotation(r);
+    else if(bf(r)<-1&&bf(r->right)<=0)
+        r=rrrotation(r);
+    else if(bf(r)<-1&&bf(r->right)>0)
+        r=rlrotation(r);
+
+
+    return r;
+
+}
+```
+##### (8)查找结点
+```C++
+struct AVLNode* AVL::find(struct AVLNode *r,int data)
+{
+    if(r==NULL)return NULL;
+    if(data<r->data)
+        return find(r->left,data);//在左子树中继续查找
+    else if(data>r->data)
+        return find(r->right,data);//在右子树中继续查找
+    else return r;
+}
+
+```
+##### (9)删除结点
+```C++
+struct AVLNode * AVL::deleteAVLNode(struct AVLNode *p,int data)
+{
+
+    if(p->left==NULL&&p->right==NULL)//如果当前节点是叶子节点，直接删除
+    {
+        if(p==this->root)//如果是AVL树的根
+            this->root=NULL;
+        delete p;
+        return NULL;
+    }
+
+    struct AVLNode *q;
+    //递归调用删除函数来在左右子树寻找节点
+    if(p->data<data)
+        p->right=deleteAVLNode(p->right,data);
+    else if(p->data>data)
+        p->left=deleteAVLNode(p->left,data);
+    else//找到了要删除的节点
+    {
+        if(p->left!=NULL)//如果左子树非空，将当前节点的值与左子树中的最大值交换
+        {
+            q=inpre(p->left);
+            p->data=q->data;
+            p->left=deleteAVLNode(p->left,q->data);
+        }
+        else//右子树非空，将当前节点的值与右子树中的最小值交换
+        {
+            q=insuc(p->right);
+            p->data=q->data;
+            p->right=deleteAVLNode(p->right,q->data);
+        }
+    }
+
+    p->height=calheight(p);
+
+    qDebug()<<"before raotation node"<<p->data<<"height"<<p->height<<"bf"<<bf(p);
+
+    if(bf(p)>1&&bf(p->left)>0)
+        p=llrotation(p);
+    else if(bf(p)>1&&bf(p->left)<=0)
+        p=lrrotation(p);
+    else if(bf(p)<-1&&bf(p->right)<=0)
+        p=rrrotation(p);
+    else if(bf(p)<-1&&bf(p->right)>0)
+        p=rlrotation(p);
+
+    qDebug()<<"after rotation node"<<p->data<<"height"<<p->height<<"bf"<<bf(p);
+
+    return p;
+}
+```
+##### (10)求某结点的前驱
+```C++
+struct AVLNode* AVL::inpre(struct AVLNode* p)
+{
+    while(p->right!=NULL)
+        p=p->right;//找到左子树上数据最大的结点
+    return p;
+}
+```
+##### (10)求某结点的后继
+```C++
+struct AVLNode* AVL::insuc(struct AVLNode* p)
+{
+    while(p->left!=NULL)
+        p=p->left;//找到右子树上数据最小的结点
+    return p;
+}
+
+```
+## 4.调试分析
+### 4.1 遇到的问题及分析
+#### 4.1.1 问题
+##### 平衡二叉树中最难处理的是平衡问题，如何保证所创建的树是一个平衡树是关键问题。考虑可以通过递归调用的方式，通过层层递归，来调节各层节点的平衡因子。
+##### 在调试过程中经常出现平衡因子数值不对的问题，经过仔细检查，发现是某些部分的代码不能适用于全部的可能情形，当一种新情形出现时，就会产生错误。经过不断的调试和改进，对这部分代码添加if判断，来区分各种不同的情形，进行不同的平衡因子调节和平衡化操作，从而解决了这一问题，通过目前测试来看，程序对于各种数据都有很好的稳定性。
+### 4.2 算法时空分析
+#### 4.2.1 时间
+###### (1) 平衡化操作 仅需要进行简单的判断，因此为O(1)
+###### (2) 删除结点操作 主要时间花费在查找需要删除的结点和找该结点的中序前驱上，因此时间复杂度为O(log(n))
+###### (3) 合并树 需要找到插入位置，时间复杂度为O(log(n))
+#### 4.2.2 空间
+###### (1) 平衡化操作 不需要开辟空间，为O(1)
+###### (2) 删除结点操作 O(1)
+###### (3) 合并树 直接合并到根节点上，不另开辟空间O(1)
+#### 4.2.3 改进
+##### 能否在查找删除节点和合并树的操作上进行算法的优化改进，使得查找效率和合并效率更高。
+### 4.3 经验和体会
+##### 递归调用对于平衡树的平衡调节具有非常重要的作用，这大大减少了代码量，并且使得代码更加简洁。然而递归调用的过程却是非常复杂不容易理解的，稍不留神就有可能出现错误的调用，由于是层层递归，所以对函数运行情况的跟踪并不容易，十分容易出现错误。因此，为了减少错误，应当在编写前弄清楚整个函数所要实现的功能，并且尽量将代码写的规范，以便于调试的时候进行修改。
+## 5.使用说明
+## 6.测试结果
+## 7.附录
+### 7.1 个人负责的部分
+### 7.2 整个程序

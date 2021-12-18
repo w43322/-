@@ -9,4 +9,6 @@
 #define ERROR 1
 #define OK 0
 
+#define max(a,b) (a>b?a:b)
+
 #endif //UNIVERSAL_H

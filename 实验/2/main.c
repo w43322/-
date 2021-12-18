@@ -27,18 +27,24 @@ int main()
         push(&N,name);
     }
     printf("\n-----------开始配对----------\n");
+    int max_cnt=max(size(&M),size(&N));//男运动员多还是女运动员多？这个变量存最多的数量。
+    int tot=0;//每个运动员都要至少比赛K次。
     for(int i=1;i<=k;++i)
     {
-        if((!empty(&M))&&(!empty(&N)))
+        printf("\n第%d轮配对:\n",i);
+        for(int j=1;tot<max_cnt*i;++j)//进入循环的条件：这一轮配对中，还有人没比赛i次。
         {
-            char name_m[max_str_length],name_n[max_str_length];
-            pop(&M,name_m);
-            pop(&N,name_n);
-            printf("\n第%d轮配对:成功\n    男运动员:%s|女运动员:%s\n",i,name_m,name_n);
-        }
-        else
-        {
-            printf("\n第%d轮配对:失败\n    等候队列中运动员不足\n",i);
+            char name_m1[max_str_length],name_n1[max_str_length];
+            pop(&M,name_m1);push(&M,name_m1);
+            pop(&N,name_n1);push(&N,name_n1);
+            char name_m2[max_str_length],name_n2[max_str_length];
+            pop(&M,name_m2);push(&M,name_m2);
+            pop(&N,name_n2);push(&N,name_n2);
+            
+            printf("  第%d场比赛:\n",j);
+            printf("    Team 1:男运动员:%9s|女运动员:%9s\n",name_m1,name_n1);
+            printf("    Team 2:男运动员:%9s|女运动员:%9s\n",name_m2,name_n2);
+            tot+=2;
         }
     }
     printf("\n-----------完成----------\n");

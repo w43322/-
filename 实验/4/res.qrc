@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>tkk.jpg</file>
         <file>tkk.png</file>
     </qresource>
 </RCC>

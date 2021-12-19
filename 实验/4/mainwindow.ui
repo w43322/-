@@ -18,7 +18,7 @@
   </property>
   <property name="styleSheet">
    <string notr="true">MainWindow{
-background-image: url(:/tkk.png);
+background-image: url(&quot;:/tkk.png&quot;);
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -331,8 +331,8 @@ background-image: url(:/tkk.png);
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>772</width>
-         <height>257</height>
+         <width>774</width>
+         <height>256</height>
         </rect>
        </property>
        <property name="styleSheet">

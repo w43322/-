@@ -1,15 +1,16 @@
 #include"main.h"
 int main()
 {
-    int N,M;
-    CList L;
+    int N,M;//初始化M和N
+    CList L;//初始化一个循环队列
 
+    //在屏幕上显示问题情境
     std::cout<<"约瑟夫环问题:\n"
              <<"N个人围成一圈，从第一个人开始报数，数到M的人出列，再由下一个人重新从1开始报数，\n"
              <<"数到M的人再出圈，依次类推，直到所有的人都出圈，\n";
     std::cout<<"    请输入N和M(1<=M<=N):";
     std::cin>>N>>M;
-    while(1>M||M>N)
+    while(1>M||M>N)//输入的数据不满足数据范围限制，提示重新输入
     {
         std::cout<<"输入错误，请重新输入!\n";
         std::cout<<"    请输入N和M(1<=M<=N):";
@@ -19,16 +20,29 @@ int main()
              <<"出圈的人的编号依次为:\n    ";
 
     for(int i=1;i<=N;++i)
-        L.push_back(i);
+        L.push_back(i);//首先把所有人都加入循环链表
     
-    int cnt=M;
-    while(L.size())
+    if(M%2==1)//M为奇数
     {
-        while(cnt--)
-            L.next();
-        std::cout<<L.get()<<" ";
-        L.erase();
-        cnt=M;
+        while(L.size())
+        {
+            //进入循环的条件是元素个数>=1
+            for(int i=1;i<M;++i)
+                L.next();//此人不出圈，指针指向下一人
+            std::cout<<L.get()<<" ";//指针指向的人报的数是M，这个人应该出圈，输出这个人的编号
+            L.erase_next();//把这个人从链表中删除，并把指针后移
+        }
+    }
+    else//M为偶数
+    {
+        while(L.size())
+        {
+            //进入循环的条件是元素个数>=1
+            for(int i=1;i<M;++i)
+                L.prev();//此人不出圈，指针指向上一人
+            std::cout<<L.get()<<" ";//指针指向的人报的数是M，这个人应该出圈，输出这个人的编号
+            L.erase_prev();//把这个人从链表中删除，并把指针前移
+        }
     }
     std::cout<<"\n----------END-OF-OUTPUT------------------\n";
 }

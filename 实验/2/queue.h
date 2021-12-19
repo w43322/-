@@ -11,5 +11,6 @@ void init(Queue*);
 int push(Queue*,char*);
 int pop(Queue*,char*);
 int empty(Queue*);
+int size(Queue*);
 
 #endif //QUEUE_H
